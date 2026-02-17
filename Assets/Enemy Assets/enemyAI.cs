@@ -9,7 +9,7 @@ public class enemyAI : enemyTypes
     void Start()
     {
         
-        target = GameObject.Find("PlayerBase").transform;
+        target = GameObject.Find("Player").transform;
         randomiseEnemyTypes();
         setEnemyStats(thisEnemyType);
     }
@@ -20,19 +20,19 @@ public class enemyAI : enemyTypes
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         if (health <= 0)
         {
-            baseScript.experiencePoints += experienceValue;
+            GameObject.Find("Player").GetComponent<baseScript>().experiencePoints += experienceValue;
             Destroy(gameObject);
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "PlayerBase")
+        if (collision.gameObject.name == "Player")
         {
-            GameObject.Find("PlayerBase").GetComponent<baseScript>().baseHP -= 10;
+            GameObject.Find("Player").GetComponent<baseScript>().baseHP -= 10;
             Destroy(this.gameObject);
         }
     }
-    //randomise enemy type on spewn and set values, 2/5 caveman 2/5 rockthrower 1/5 dinorider
+    //randomise enemy type on spawn and set values, 2/5 caveman 2/5 rockthrower 1/5 dinorider
     void randomiseEnemyTypes()
     {
         int randomType = Random.Range(0, 5);

@@ -9,9 +9,10 @@ public class baseScript : MonoBehaviour
     private Image healthBar;
     public GameObject baseProjectile;
     public float fireRate = 1f;
-    public static float experiencePoints = 0f;
+    public float experiencePoints = 0f;
     public int level = 1;
     public float experienceToNextLevel = 100f;
+    public float gold;
     private TMP_Text levelText;
     private Image levelUpBar;
     
