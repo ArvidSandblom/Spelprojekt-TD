@@ -4,8 +4,7 @@ using UnityEngine;
 public class enemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-
-    private float spawnTimer;
+    public float spawnTimer = 2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     void Start()
@@ -30,7 +29,7 @@ public class enemySpawner : MonoBehaviour
         {
             Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             pickSpawnArea();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(spawnTimer);
             
         }        
     }
