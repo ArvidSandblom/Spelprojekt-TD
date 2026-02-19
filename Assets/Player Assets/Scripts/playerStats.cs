@@ -13,11 +13,11 @@ public class playerStats : MonoBehaviour
     public float gold = 0f;
     public float damage = 50f;
     public GameObject player;
+    public static bool alive = true;
+    private static playerStats playerInstance;
     private TMP_Text levelText;
     private Image levelUpBar;
     private Image healthBar;
-    public static bool alive = true;
-    private static playerStats playerInstance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
