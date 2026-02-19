@@ -10,14 +10,16 @@ public class levelUpUI : MonoBehaviour
     private GameObject playerStats;
     GameObject gameManager;
     string perkText = "";
+    public int currentLevel;    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerStats = GameObject.Find("playerStats");
         gameManager = GameObject.Find("gameManager");   
         GameObject levelUpText = GameObject.Find("text1");
-        levelUpText.GetComponent<TMP_Text>().text = $"Congratulations on reaching level {playerStats.GetComponent<playerStats>().level}!";
         instantiateButtons();         
+        //currentLevel = playerStats.GetComponent<playerStats>().level;
+        levelUpText.GetComponent<TMP_Text>().text = $"Congratulations on reaching the next level!";
     }    
     void instantiateButtons()
     {

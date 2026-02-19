@@ -4,13 +4,25 @@ using UnityEngine.UI;
 
 public class generalManager : MonoBehaviour
 {
-    
+    private static generalManager generalManagerInstance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        
     }
-
+    void Awake()
+    {
+        DontDestroyOnLoad (this);
+            
+        if (generalManagerInstance == null) 
+        {
+            generalManagerInstance = this;
+        } 
+        else 
+        {
+            Destroy(this.gameObject);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -58,7 +70,7 @@ public class generalManager : MonoBehaviour
     }
     public void restartGame()
     {
-        GameObject.Find("playerStats").GetComponent<playerStats>().resetPlayerStats();
+        //GameObject.Find("playerStats").GetComponent<playerStats>().resetPlayerStats();
         SceneManager.LoadScene(1);
 
     }

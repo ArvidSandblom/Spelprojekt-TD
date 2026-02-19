@@ -20,7 +20,7 @@ public class enemyAI : enemyTypes
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         if (health <= 0)
         {
-            GameObject.Find("Player").GetComponent<baseScript>().experiencePoints += experienceValue;
+            GameObject.Find("playerStats").GetComponent<playerStats>().experiencePoints += experienceValue;
             Destroy(gameObject);
         }
     }
@@ -28,7 +28,7 @@ public class enemyAI : enemyTypes
     {
         if (collision.gameObject.name == "Player")
         {
-            GameObject.Find("Player").GetComponent<baseScript>().baseHP -= 10;
+            GameObject.Find("playerStats").GetComponent<playerStats>().health -= 10;
             Destroy(this.gameObject);
         }
     }

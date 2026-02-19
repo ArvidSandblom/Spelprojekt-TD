@@ -41,7 +41,7 @@ public class enemyBaseClass : MonoBehaviour
     }
     public void Die()
     {
-        GameObject.Find("Player").GetComponent<baseScript>().experiencePoints += experienceValue;
+        GameObject.Find("playerStats").GetComponent<playerStats>().experiencePoints += experienceValue;
         Destroy(gameObject);
     }    
     public void TakeDamage(float damageAmount)

@@ -1,54 +1,69 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class playerStats : MonoBehaviour
 {
-    public float health;
-    public float experiencePoints;
-    public int level;
-    public float experienceToNextLevel;
-    public float fireRate;
-    public float gold;
-    GameObject player;
+    public float health = 100f;
+    public float experiencePoints = 0f;
+    public int level = 1;
+    public float experienceToNextLevel = 100f;
+    public float fireRate = 1f;
+    public float gold = 0f;
+    public float damage = 50f;
+    public GameObject player;
+    private TMP_Text levelText;
+    private Image levelUpBar;
+    private Image healthBar;
+    public static bool alive = true;
+    private static playerStats playerInstance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-        if (GameObject.Find("playerStats") != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            getPlayerStats();
-        }
-    }
-    public void getPlayerStats()
-    {
+    {   
+        healthBar = GameObject.Find("baseHPGreen").GetComponent<Image>();
+        levelText = GameObject.Find("currentLevelText").GetComponent<TMP_Text>();
+        levelUpBar = GameObject.Find("baseXPBar").GetComponent<Image>();
         player = GameObject.Find("Player");
-        health = player.GetComponent<baseScript>().baseHP;
-        experiencePoints = player.GetComponent<baseScript>().experiencePoints;
-        level = player.GetComponent<baseScript>().level;
-        experienceToNextLevel = player.GetComponent<baseScript>().experienceToNextLevel;
-        fireRate = player.GetComponent<baseScript>().fireRate;
-        gold = player.GetComponent<baseScript>().gold;
     }
-    public void setPlayerStats()
+    void Awake()
     {
-        player = GameObject.Find("Player");
-        player.GetComponent<baseScript>().baseHP = health;
-        player.GetComponent<baseScript>().experiencePoints = experiencePoints;
-        player.GetComponent<baseScript>().level = level;
-        player.GetComponent<baseScript>().experienceToNextLevel = experienceToNextLevel;
-        player.GetComponent<baseScript>().fireRate = fireRate;
-        player.GetComponent<baseScript>().gold = gold;
+        DontDestroyOnLoad (this);
+            
+        if (playerInstance == null) 
+        {
+            playerInstance = this;
+        } 
+        else 
+        {
+            Destroy(this.gameObject);
+        }
     }
-    public void resetPlayerStats()
+    void Update()
     {
-        health = 100f;
+        if (healthBar != null) healthBar.fillAmount = health / 100f;
+        if (levelUpBar != null) levelUpBar.fillAmount = experiencePoints / experienceToNextLevel;
+        if (experiencePoints >= experienceToNextLevel)
+        {
+            LevelUp();
+        }
+    }
+    void LevelUp()
+    {
+        level++;
         experiencePoints = 0f;
-        level = 1;
-        experienceToNextLevel = 100f;
-        fireRate = 1f;
+        experienceToNextLevel *= 1.2f;
+        levelText.text = level.ToString();
+        SceneManager.LoadScene(2);
     }
+    // public void resetPlayerStats()
+    // {
+    //     health = 100f;
+    //     experiencePoints = 0f;
+    //     level = 1;
+    //     experienceToNextLevel = 100f;
+    //     fireRate = 1f;
+    //     damage = 20f;
+    // }
 }

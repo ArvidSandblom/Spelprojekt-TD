@@ -5,7 +5,7 @@ public class playerProjectile : MonoBehaviour
     private Transform target;
     private Vector2 targetDirection;
     public float missileSpeed = 5f;
-    public float damage = 20f;
+    public float damage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
