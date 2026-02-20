@@ -629,8 +629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseProjectile: {fileID: 7326364588709399095, guid: ce76e4b46b4b3a74a8eb522c9313412f, type: 3}
-  fireRate: 1
-  damage: 50
 --- !u!1 &804718547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,6 +1213,11 @@ MonoBehaviour:
   fireRate: 1
   gold: 0
   damage: 50
+  xpMultiplierUpgradeAmount: 0
+  goldMultiplier: 0
+  damageUpgradeMultiplier: 0
+  fireRateUpgradeMultiplier: 0
+  healthUpgradeMultiplier: 0
   player: {fileID: 0}
 --- !u!1 &1990287320 stripped
 GameObject:

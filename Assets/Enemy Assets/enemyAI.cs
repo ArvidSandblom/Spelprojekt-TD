@@ -39,10 +39,10 @@ public class enemyAI : enemyTypes
         switch (randomType)
         {
             case 0:
-                thisEnemyType = EnemyType.CAVEMAN;                
+                thisEnemyType = EnemyType.CAVEMAN;
                 break;
             case 1:
-                thisEnemyType = EnemyType.CAVEMAN;                
+                thisEnemyType = EnemyType.CAVEMAN;
                 break;
             case 2:
                 thisEnemyType = EnemyType.ROCKTHROWER;
@@ -51,7 +51,7 @@ public class enemyAI : enemyTypes
                 thisEnemyType = EnemyType.ROCKTHROWER;
                 break;
             case 4:
-                thisEnemyType = EnemyType.DINORIDER;                
+                thisEnemyType = EnemyType.DINORIDER;
                 break;
         }
     }

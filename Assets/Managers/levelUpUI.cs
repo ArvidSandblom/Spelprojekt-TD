@@ -59,22 +59,27 @@ public class levelUpUI : MonoBehaviour
 
     void attackSpeed()
     {
-        perkText = "Attack Speed";   
+        perkText = "Attack Speed\n+10%";
+        playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier += 0.1f;
     }
     void health()
     {
-        perkText = "Health";
+        perkText = "Health\n+10%";
+        playerStats.GetComponent<playerStats>().healthUpgradeMultiplier += 0.1f;
     }
     void gold()
     {
-        perkText = "Gold";
+        perkText = "Gold\n+5%";
+        playerStats.GetComponent<playerStats>().goldMultiplier += 0.05f;
     }
     void damage()
     {
-        perkText = "Damage";
+        perkText = "Damage\n+10%";
+        playerStats.GetComponent<playerStats>().damageUpgradeMultiplier += 0.1f;
     }
     void experience()
     {
-        perkText = "Experience";
+        perkText = "Experience\n+5%";
+        playerStats.GetComponent<playerStats>().xpMultiplierUpgradeAmount += 0.05f;
     }
 }
