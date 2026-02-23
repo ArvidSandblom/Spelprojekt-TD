@@ -9,77 +9,98 @@ public class levelUpUI : MonoBehaviour
     public Transform levelUpScreen;
     private GameObject playerStats;
     GameObject gameManager;
-    string perkText = "";
-    public int currentLevel;    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int currentLevel;
+    
+    private List<int> selectedPerkIndices = new List<int>();
+    
     void Start()
     {
         playerStats = GameObject.Find("playerStats");
         gameManager = GameObject.Find("gameManager");   
         GameObject levelUpText = GameObject.Find("text1");
         instantiateButtons();         
-        //currentLevel = playerStats.GetComponent<playerStats>().level;
         levelUpText.GetComponent<TMP_Text>().text = $"Congratulations on reaching the next level!";
     }    
+    
     void instantiateButtons()
     {
-        List<System.Action> perks = new List<System.Action>
+        string[] perkNames = new string[]
         {
-            attackSpeed,
-            health,
-            gold,
-            damage,
-            experience
+            "Attack Speed +10%",
+            "Health +10%",
+            "Gold +5%",
+            "Damage +10%",
+            "Experience +5%"
         };
+
+        List<int> availableIndices = new List<int> { 0, 1, 2, 3, 4 };
 
         for (int i = 0; i < 3; i++)
         {
-            int randomIndex = Random.Range(0, perks.Count);
-
-            System.Action selectedPerk = perks[randomIndex];
-            perks.RemoveAt(randomIndex);
-
-            selectedPerk(); // sets perkText etc.
+            int randomListIndex = Random.Range(0, availableIndices.Count);
+            int perkIndex = availableIndices[randomListIndex];
+            availableIndices.RemoveAt(randomListIndex);
+            
+            selectedPerkIndices.Add(perkIndex);
 
             GameObject button = Instantiate(levelUpButtonPrefab, levelUpScreen);
             RectTransform buttonRect = button.GetComponent<RectTransform>();
             buttonRect.anchoredPosition = new Vector2(-200 + (i * 200), 0); 
-            button.GetComponentInChildren<TMP_Text>().text = perkText;
-            button.GetComponent<Button>().onClick.AddListener(levelPerkPlaceHolder);
+            button.GetComponentInChildren<TMP_Text>().text = perkNames[perkIndex];
+            
+            int buttonIndex = i;
+            button.GetComponent<Button>().onClick.AddListener(() => OnPerkButtonClicked(buttonIndex));
         }
     }
 
-    void levelPerkPlaceHolder()
+    void OnPerkButtonClicked(int buttonIndex)
     {
-        //placeholder for now, will be replaced with actual perks later
-        //playerStats.GetComponent<playerStats>().level++;
+        int perkIndex = selectedPerkIndices[buttonIndex];
+        
+        switch (perkIndex)
+        {
+            case 0:
+                ApplyAttackSpeed();
+                break;
+            case 1:
+                ApplyHealth();
+                break;
+            case 2:
+                ApplyGold();
+                break;
+            case 3:
+                ApplyDamage();
+                break;
+            case 4:
+                ApplyExperience();
+                break;
+        }
+        
         gameManager.GetComponent<generalManager>().continueGame();
-
     }
 
-    void attackSpeed()
+    void ApplyAttackSpeed()
     {
-        perkText = "Attack Speed\n+10%";
-        playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier += 0.1f;
+        playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier *= 1.1f;
     }
-    void health()
+    
+    void ApplyHealth()
     {
-        perkText = "Health\n+10%";
         playerStats.GetComponent<playerStats>().healthUpgradeMultiplier += 0.1f;
     }
-    void gold()
+    
+    void ApplyGold()
     {
-        perkText = "Gold\n+5%";
         playerStats.GetComponent<playerStats>().goldMultiplier += 0.05f;
     }
-    void damage()
+    
+    void ApplyDamage()
     {
-        perkText = "Damage\n+10%";
         playerStats.GetComponent<playerStats>().damageUpgradeMultiplier += 0.1f;
     }
-    void experience()
+    
+    void ApplyExperience()
     {
-        perkText = "Experience\n+5%";
         playerStats.GetComponent<playerStats>().xpMultiplierUpgradeAmount += 0.05f;
     }
 }

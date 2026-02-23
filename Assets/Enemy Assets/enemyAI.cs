@@ -21,6 +21,7 @@ public class enemyAI : enemyTypes
         if (health <= 0)
         {
             GameObject.Find("playerStats").GetComponent<playerStats>().experiencePoints += experienceValue;
+            GameObject.Find("playerStats").GetComponent<playerStats>().gold += goldValue;
             Destroy(gameObject);
         }
     }

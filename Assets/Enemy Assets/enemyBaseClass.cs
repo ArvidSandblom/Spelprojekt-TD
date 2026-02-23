@@ -13,6 +13,7 @@ public class enemyBaseClass : MonoBehaviour
     public float damage;
     public float speed;
     public float experienceValue;
+    public float goldValue;
 
     public float Health
     {
@@ -30,6 +31,11 @@ public class enemyBaseClass : MonoBehaviour
         set;
     }
     public float ExperienceValue
+    {
+        get;
+        set;
+    }
+    public float GoldValue
     {
         get;
         set;

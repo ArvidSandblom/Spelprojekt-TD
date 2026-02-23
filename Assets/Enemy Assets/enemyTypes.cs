@@ -14,16 +14,21 @@ public class enemyTypes : enemyBaseClass
                 health = 20f;
                 damage = 10f;
                 experienceValue = 10f;
+                goldValue = 3f;
                 break;
             case EnemyType.ROCKTHROWER:
-                health = 30f;
                 speed = 3f;
+                health = 30f;
+                damage = 15f;
                 experienceValue = 15f;
+                goldValue = 5f;
                 break;
             case EnemyType.DINORIDER:
-                health = 80f;
                 speed = 1.5f;
+                health = 80f;
+                damage = 25f;
                 experienceValue = 25f;
+                goldValue = 10f;
                 break;
         }
     }

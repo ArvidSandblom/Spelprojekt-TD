@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class playerProjectile : MonoBehaviour
 {
+    public bool findStrongest = false;
+    public bool findClosest = false;    
     private Transform target;
     private Vector2 targetDirection;
     public float missileSpeed = 5f;
@@ -9,7 +11,15 @@ public class playerProjectile : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        target = FindClosestEnemy();
+
+        if (findStrongest)
+        {
+            target = findStrongestEnemy();
+        }
+        else if (findClosest)
+        {
+            target = FindClosestEnemy();
+        }
         
         if (target != null)
         {
@@ -27,7 +37,7 @@ public class playerProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += (Vector3)targetDirection * missileSpeed * Time.deltaTime;
+        transform.position += (Vector3)targetDirection * missileSpeed * Time.deltaTime;       
     }
 
     Transform FindClosestEnemy()
@@ -45,8 +55,36 @@ public class playerProjectile : MonoBehaviour
                 closestEnemy = enemy.transform;
             }
         }
+        if (closestEnemy == null)
+        {
+            Destroy(gameObject);
+            return null;
+        }
 
         return closestEnemy;
+    }
+    Transform findStrongestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Transform strongestEnemy = null;
+        float highestHealth = 0f;
+
+        foreach (GameObject enemy in enemies)
+        {
+            enemyAI enemyScript = enemy.GetComponent<enemyAI>();
+            if (enemyScript != null && enemyScript.health > highestHealth)
+            {
+                highestHealth = enemyScript.health;
+                strongestEnemy = enemy.transform;
+            }
+        }
+        if (strongestEnemy == null)
+        {
+            Destroy(gameObject);
+            return null;
+        }
+
+        return strongestEnemy;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -59,6 +97,29 @@ public class playerProjectile : MonoBehaviour
                 enemy.health -= damage;
             }
             Destroy(this.gameObject);
+        }
+    }
+    public void setProjectileStats(towerBaseClass.TowerType towerType, float towerDamage)
+    {
+        damage = towerDamage;
+        switch (towerType)
+        {
+            case towerBaseClass.TowerType.ROCKTHROWER:
+                findClosest = true;
+                findStrongest = false;
+                break;
+            case towerBaseClass.TowerType.SLINGSHOT:
+                findClosest = false;
+                findStrongest = true;
+                break;
+            case towerBaseClass.TowerType.SPEARTHROWER:
+                findClosest = false;
+                findStrongest = true;
+                break;
+            case towerBaseClass.TowerType.ARCHER:
+                findClosest = true;
+                findStrongest = false;
+                break;
         }
     }
 }
