@@ -76,7 +76,7 @@ public class levelUpUI : MonoBehaviour
                 break;
         }
         
-        gameManager.GetComponent<generalManager>().continueGame();
+        gameManager.GetComponent<gameManager>().continueGame();
     }
 
     void ApplyAttackSpeed()

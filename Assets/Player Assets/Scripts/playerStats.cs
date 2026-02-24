@@ -8,8 +8,10 @@ public class playerStats : MonoBehaviour
     int currentAge = 1;
     public float health = 100f;
     public float experiencePoints = 0f;
+    public float agePoints = 0f;
     public int level = 1;
     public float experienceToNextLevel = 100f;
+    public float agePointsToNextAge = 1000f;
     public float fireRate = 1f;
     public float gold = 0f;
     public float damage = 20f;
@@ -23,14 +25,18 @@ public class playerStats : MonoBehaviour
     public static bool alive = true;
     private static playerStats playerInstance;
     private TMP_Text levelText;
+    private TMP_Text ageText;
+    private Image ageBar;
     private Image levelUpBar;
     private Image healthBar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   
+    {               
         healthBar = GameObject.Find("baseHPGreen").GetComponent<Image>();
         levelText = GameObject.Find("currentLevelText").GetComponent<TMP_Text>();
+        ageText = GameObject.Find("currentAgeText").GetComponent<TMP_Text>();
+        ageBar = GameObject.Find("baseAgeBar").GetComponent<Image>();
         levelUpBar = GameObject.Find("baseXPBar").GetComponent<Image>();
         player = GameObject.Find("Player");
         goldText = GameObject.Find("gold").GetComponent<TMP_Text>();
@@ -52,12 +58,18 @@ public class playerStats : MonoBehaviour
     }
     void Update()
     {
+        if (ageText != null) ageText.text = "Age: " + currentAge.ToString();
         if (goldText != null) goldText.text = "Gold: " + gold.ToString("F0");
         if (healthBar != null) healthBar.fillAmount = health / 100f;
         if (levelUpBar != null) levelUpBar.fillAmount = experiencePoints / experienceToNextLevel;
+        if (ageBar != null) ageBar.fillAmount = agePoints / agePointsToNextAge;
         if (experiencePoints >= experienceToNextLevel)
         {
             LevelUp();
+        }
+            if (agePoints >= agePointsToNextAge)
+        {
+            AgeUp();
         }
     }
     void LevelUp()
@@ -67,6 +79,13 @@ public class playerStats : MonoBehaviour
         experienceToNextLevel *= 1.2f;
         levelText.text = level.ToString();
         SceneManager.LoadScene(2);
+    }
+    void AgeUp()
+    {
+        currentAge++;
+        agePoints = 0f;
+        agePointsToNextAge *= 1.5f;
+        ageText.text = "Age: " + currentAge.ToString();
     }
     private void OnEnable()
     {

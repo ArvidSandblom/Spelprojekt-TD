@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class towerScript : towerClass
@@ -51,5 +52,14 @@ public class towerScript : towerClass
             projectile.GetComponent<SpriteRenderer>().sprite = projectileSprites[(int)thisTowerType];
             yield return new WaitForSeconds(fireRate);
         }
+    }
+    void OnMouseDown() 
+    {
+        Time.timeScale = 0f;
+        upgradeTower(gameObject);
+    }
+    void upgradeTower(GameObject tower)
+    {
+        
     }
 }

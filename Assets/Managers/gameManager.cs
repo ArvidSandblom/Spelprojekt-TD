@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class generalManager : MonoBehaviour
+public class gameManager : MonoBehaviour
 {
-    private static generalManager generalManagerInstance;
+    private static gameManager gameManagerInstance;
     public GameObject tower;
+    
+    [SerializeField] private Transform[] innerTowerPositions = new Transform[4];
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,9 +17,9 @@ public class generalManager : MonoBehaviour
     {
         DontDestroyOnLoad (this);
             
-        if (generalManagerInstance == null) 
+        if (gameManagerInstance == null) 
         {
-            generalManagerInstance = this;
+            gameManagerInstance = this;
         } 
         else 
         {
@@ -106,6 +108,15 @@ public class generalManager : MonoBehaviour
         addedTower.transform.position = towerPos;
         addedTower.transform.localScale = new Vector3(3, 3, 1);
         addedTower.GetComponent<towerScript>().setTowerType(type);
+    }    
+    int towerIndex = 0;
+    public void instantiateBaseTower()
+    {
+        if (towerIndex < innerTowerPositions.Length)
+        {
+            Instantiate(tower, innerTowerPositions[towerIndex].position, Quaternion.identity).GetComponent<towerScript>().setTowerType(0);
+            towerIndex++;
+        }
     }
 
 }
