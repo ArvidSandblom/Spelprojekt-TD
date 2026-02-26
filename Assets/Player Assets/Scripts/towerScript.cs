@@ -9,7 +9,7 @@ public class towerScript : towerClass
     GameObject playerStats;
     public Sprite[] towerSprites;
     public Sprite[] projectileSprites;
-    public GameObject projectilePrefab;
+    public GameObject projectilePrefab;    
 
     void Start()
     {

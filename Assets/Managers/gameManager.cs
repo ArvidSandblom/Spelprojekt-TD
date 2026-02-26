@@ -7,10 +7,13 @@ public class gameManager : MonoBehaviour
     private static gameManager gameManagerInstance;
     public GameObject tower;
     
-    [SerializeField] private Transform[] innerTowerPositions = new Transform[4];
+    private Transform[] innerTowerPositions = new Transform[4];
+    GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.Find("Player");
+        initializeInnerTowerPositions();
         
     }
     void Awake()
@@ -30,6 +33,35 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void initializeInnerTowerPositions()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            for (int i = 0; i < innerTowerPositions.Length; i++)
+            {
+                Vector3 position = player.transform.position;
+                switch (i)
+                {
+                    case 0:
+                        position = new Vector3(0.5f, 0, 0);
+                        break;
+                    case 1:
+                        position = new Vector3(0f, 0.5f, 0);
+                        break;
+                    case 2:
+                        position = new Vector3(-0.5f, 0, 0);
+                        break;
+                    case 3:
+                        position = new Vector3(0, -0.5f, 0);
+                        break;
+                }
+                GameObject innerTowerPosition = new GameObject("InnerTowerPosition" + (i + 1));
+                innerTowerPosition.transform.position = position;
+                innerTowerPositions[i] = innerTowerPosition.transform;
+            }
+        }
     }
 
     void timeScaleSwitch()
@@ -113,7 +145,9 @@ public class gameManager : MonoBehaviour
     public void instantiateBaseTower()
     {
         if (towerIndex < innerTowerPositions.Length)
-        {
+        {   
+            //Hitta sätt att hindra tornet från att förstöras:
+            //Alternativt: Skapa lista, spara spelobjektet genom att towerList.apend(tower)          
             Instantiate(tower, innerTowerPositions[towerIndex].position, Quaternion.identity).GetComponent<towerScript>().setTowerType(0);
             towerIndex++;
         }
