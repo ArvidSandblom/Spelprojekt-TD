@@ -8,6 +8,8 @@ public class playerProjectile : MonoBehaviour
     private Vector2 targetDirection;
     public float missileSpeed = 5f;
     public float damage;
+    public float critChance;
+    public float critDamage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -94,14 +96,24 @@ public class playerProjectile : MonoBehaviour
             enemyAI enemy = collision.GetComponent<enemyAI>();
             if (enemy != null)
             {
-                enemy.health -= damage;
+                int critRoll = Random.Range(0,101);
+                if (critRoll < critChance)
+                {
+                    damage *= critDamage;
+                }
+                else 
+                {
+                    enemy.health -= damage;
+                }
             }
             Destroy(this.gameObject);
         }
     }
-    public void setProjectileStats(towerBaseClass.TowerType towerType, float towerDamage)
+    public void setProjectileStats(towerBaseClass.TowerType towerType, float towerDamage, float towerCritChance, float towerCritDamage)
     {
         damage = towerDamage;
+        critChance = towerCritChance;
+        critDamage = towerCritDamage;
         switch (towerType)
         {
             case towerBaseClass.TowerType.ROCKTHROWER:

@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class towerScript : towerClass
 {
-    //Tornet förstörs vid scenbyte. LÖS
     public towerBaseClass.TowerType thisTowerType;
-    GameObject playerStats;
     public Sprite[] towerSprites;
     public Sprite[] projectileSprites;
-    public GameObject projectilePrefab;    
+    public GameObject projectilePrefab;
+
+    [SerializeField] private GameObject upgradeScreenPrefab;
+
+    private GameObject playerStats;
 
     void Start()
     {
         playerStats = GameObject.Find("playerStats");
         setTowerStats(thisTowerType);
         damage = this.damage * playerStats.GetComponent<playerStats>().damageUpgradeMultiplier;
-        fireRate = this.fireRate * playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier;
+        fireRate = this.fireRate * playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier;        
         StartCoroutine(firingRoutine());
-    }    
+    }
+
     public void setTowerType(towerBaseClass.TowerType type)
     {
         thisTowerType = type;
         setTowerStats(type);
         setTowerSprite();
     }
+
     public void setTowerSprite()
     {
         switch (thisTowerType)
@@ -43,23 +47,44 @@ public class towerScript : towerClass
                 break;
         }
     }
+
     IEnumerator firingRoutine()
     {
         while (true)
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            projectile.GetComponent<playerProjectile>().setProjectileStats(thisTowerType, damage);
+            projectile.GetComponent<playerProjectile>().setProjectileStats(thisTowerType, damage, critChance, critDamage);
             projectile.GetComponent<SpriteRenderer>().sprite = projectileSprites[(int)thisTowerType];
             yield return new WaitForSeconds(fireRate);
         }
     }
-    void OnMouseDown() 
+
+    void OnMouseDown()
     {
+        // Prevent stacking multiple upgrade screens
+        if (FindFirstObjectByType<TowerUpgradeScreen>() != null) return;
+
         Time.timeScale = 0f;
-        upgradeTower(gameObject);
+        upgradeTower();
     }
-    void upgradeTower(GameObject tower)
+
+    private void upgradeTower()
     {
-        
+        if (upgradeScreenPrefab == null)
+        {
+            Debug.LogError("towerScript: upgradeScreenPrefab is not assigned.", this);
+            return;
+        }
+
+        Canvas canvas = FindFirstObjectByType<Canvas>();
+        if (canvas == null)
+        {
+            Debug.LogError("towerScript: No Canvas found in the scene to parent the upgrade screen.", this);
+            return;
+        }
+
+        GameObject screen = Instantiate(upgradeScreenPrefab, canvas.transform);
+        TowerUpgradeScreen upgradeScreen = screen.GetComponent<TowerUpgradeScreen>();
+        upgradeScreen.Initialize(this);
     }
 }

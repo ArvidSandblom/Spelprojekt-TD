@@ -114,6 +114,7 @@ public class gameManager : MonoBehaviour
         Vector3 towerPos;
         towerBaseClass.TowerType type;
         GameObject addedTower = Instantiate(tower, new Vector3(0, 0, 0), Quaternion.identity); 
+        DontDestroyOnLoad(addedTower);
         switch (towerType)
         {
             case "ROCKTHROWER":
@@ -147,8 +148,10 @@ public class gameManager : MonoBehaviour
         if (towerIndex < innerTowerPositions.Length)
         {   
             //Hitta sätt att hindra tornet från att förstöras:
-            //Alternativt: Skapa lista, spara spelobjektet genom att towerList.apend(tower)          
-            Instantiate(tower, innerTowerPositions[towerIndex].position, Quaternion.identity).GetComponent<towerScript>().setTowerType(0);
+            //Alternativt: Skapa lista, spara spelobjektet genom att towerList.apend(tower)                      
+            GameObject instantiatedTower = Instantiate(tower, innerTowerPositions[towerIndex].position, Quaternion.identity);
+            instantiatedTower.GetComponent<towerScript>().setTowerType(0);
+            DontDestroyOnLoad(instantiatedTower);
             towerIndex++;
         }
     }

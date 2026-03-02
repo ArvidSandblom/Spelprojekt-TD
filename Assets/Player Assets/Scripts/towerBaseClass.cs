@@ -15,6 +15,8 @@ public class towerBaseClass : MonoBehaviour
     public float fireRate;
     public bool findClosest;
     public bool findStrongest;
+    public float critChance;
+    public float critDamage;
     public TowerType towerType
     {
         get;
@@ -36,6 +38,16 @@ public class towerBaseClass : MonoBehaviour
         set;
     }
     public bool FindStrongest
+    {
+        get;
+        set;
+    }
+    public float CritChance
+    {
+        get;
+        set;
+    }
+    public float CritDamage
     {
         get;
         set;

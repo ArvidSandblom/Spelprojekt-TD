@@ -50,18 +50,21 @@ MonoBehaviour:
   fireRate: 0
   findClosest: 0
   findStrongest: 0
+  critChance: 0
+  critDamage: 0
   thisTowerType: 0
   towerSprites:
-  - {fileID: -8947739486651107642, guid: caa4293d6ff82e9488b28fcdefeaecfe, type: 3}
-  - {fileID: 1250318479806426207, guid: 5ee15a5b580259941a8148f7cf3743bc, type: 3}
-  - {fileID: -1027771378760860472, guid: dbcceaf71c2c1e64e9bd367b16079fe8, type: 3}
-  - {fileID: 497595572060677299, guid: 8230145e5b21b7a4abffbbae9237a5d1, type: 3}
+  - {fileID: -6367826566441062593, guid: 7f0dd8b4ba2e5864dbedb305277bca4f, type: 3}
+  - {fileID: 5318313328003405157, guid: ff754fdfb438cf94bb70517875f1132b, type: 3}
+  - {fileID: -4299088873095522494, guid: 8dca6b9adbd709545a0d482373b7b097, type: 3}
+  - {fileID: 267011330182911531, guid: 1453c539e05def74eae424cf3d45623e, type: 3}
   projectileSprites:
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   projectilePrefab: {fileID: 7326364588709399095, guid: ce76e4b46b4b3a74a8eb522c9313412f, type: 3}
+  upgradeScreenPrefab: {fileID: 8507067598675859355, guid: 7d912caaa57c11d42adfe5b6f56a44ac, type: 3}
 --- !u!212 &2700411847323973119
 SpriteRenderer:
   m_ObjectHideFlags: 0
