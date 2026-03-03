@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class playerStats : MonoBehaviour
 {    
-    int currentAge = 1;
+    public static int currentAge = 1;
     public float health = 100f;
     public float experiencePoints = 0f;
     public float agePoints = 0f;
     public int level = 1;
+
     public float experienceToNextLevel = 100f;
     public float agePointsToNextAge = 1000f;
     public float fireRate = 1f;

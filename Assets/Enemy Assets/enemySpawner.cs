@@ -4,7 +4,8 @@ using UnityEngine;
 public class enemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public float spawnTimer = 2f;
+    public static int enemiesDestroyed = 0; 
+    public static float spawnTimer = 2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     void Start()
@@ -18,21 +19,27 @@ public class enemySpawner : MonoBehaviour
     {
         
     }
-
-    public void SpawnEnemy()
-    {
-        
-    }
     IEnumerator SpawnEnemyRoutine()
     {
         while (baseScript.alive)
         {
             Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             pickSpawnArea();
+            if (enemiesDestroyed >= 10)
+            {
+                changeSpawnRate(0.9f);
+            }
             yield return new WaitForSeconds(spawnTimer);
             
         }        
     }
+
+    void changeSpawnRate(float changeValue)
+    {
+        spawnTimer *= changeValue;
+        enemiesDestroyed = 0;
+    }
+    
     public void pickSpawnArea()
     {
         int spawnArea = Random.Range(0, 4);

@@ -29,6 +29,7 @@ public class enemyAI : enemyTypes
             GameObject.Find("playerStats").GetComponent<playerStats>().experiencePoints += experienceValue;
             GameObject.Find("playerStats").GetComponent<playerStats>().agePoints += experienceValue;
             GameObject.Find("playerStats").GetComponent<playerStats>().gold += goldValue;
+            enemySpawner.enemiesDestroyed++;
             Destroy(gameObject);
         }
     }

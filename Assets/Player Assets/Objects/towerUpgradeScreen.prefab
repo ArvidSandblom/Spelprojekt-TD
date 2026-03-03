@@ -578,8 +578,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 268, y: -14.3}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 268, y: -57.8}
+  m_SizeDelta: {x: 160, y: 62.3229}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8004417116571071384
 CanvasRenderer:
@@ -1415,7 +1415,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (Tower Type) + (Level)
+  m_text: (Tower Type)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1523,8 +1523,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 268, y: -81}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 268, y: -137.3}
+  m_SizeDelta: {x: 160, y: 56.265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8790869623730365418
 CanvasRenderer:
@@ -2055,8 +2055,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 268, y: 53.500004}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 268, y: 19.1}
+  m_SizeDelta: {x: 160, y: 61.4941}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &944232535383634907
 CanvasRenderer:
@@ -2962,3 +2962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsText: {fileID: 739116521714476514}
+  towerTypeButtons:
+  - {fileID: 5847177936773106551}
+  - {fileID: 2101463133986269032}
+  - {fileID: 4532207792454905467}

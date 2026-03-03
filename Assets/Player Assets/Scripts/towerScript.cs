@@ -79,24 +79,12 @@ public class towerScript : towerClass
         if (FindFirstObjectByType<TowerUpgradeScreen>() != null) return;
 
         Time.timeScale = 0f;
-        upgradeTower();
+        upgradeTowerStats();
     }
 
-    private void upgradeTower()
+    private void upgradeTowerStats()
     {
-        if (upgradeScreenPrefab == null)
-        {
-            Debug.LogError("towerScript: upgradeScreenPrefab is not assigned.", this);
-            return;
-        }
-
         Canvas canvas = FindFirstObjectByType<Canvas>();
-        if (canvas == null)
-        {
-            Debug.LogError("towerScript: No Canvas found in the scene to parent the upgrade screen.", this);
-            return;
-        }
-
         GameObject screen = Instantiate(upgradeScreenPrefab, canvas.transform);
         TowerUpgradeScreen upgradeScreen = screen.GetComponent<TowerUpgradeScreen>();
         upgradeScreen.Initialize(this);

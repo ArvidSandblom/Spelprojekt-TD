@@ -20,6 +20,7 @@ public class levelUpUI : MonoBehaviour
         {
             tower.SetActive(false);
         }
+        GameObject.Find("enemyManager").SetActive(false);
 
         playerStats = GameObject.Find("playerStats");
         gameManager = GameObject.Find("gameManager");   
@@ -85,6 +86,7 @@ public class levelUpUI : MonoBehaviour
         {
             tower.SetActive(true);
         }
+        GameObject.Find("enemyManager").SetActive(true);
         gameManager.GetComponent<gameManager>().continueGame();
     }
 

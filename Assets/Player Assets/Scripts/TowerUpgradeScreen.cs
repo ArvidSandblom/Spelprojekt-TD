@@ -5,7 +5,7 @@ using Mono.Cecil;
 public class TowerUpgradeScreen : MonoBehaviour
 {
     [SerializeField] private TMP_Text statsText;
-
+    [SerializeField] private GameObject[] towerTypeButtons;
     private const float DamageUpgradeAmount = 5f;
     private const float FireRateReductionAmount = 0.1f;
     private const float MinFireRate = 0.1f;
@@ -28,30 +28,21 @@ public class TowerUpgradeScreen : MonoBehaviour
         parent = GameObject.Find("Canvas");
         gameObject.transform.SetParent(parent.transform);
         transform.position = parent.transform.position;
+        
     }
 
-    /// <summary>
-    /// Binds the upgrade screen to the tower that was clicked.
-    /// Call this immediately after instantiation.
-    /// </summary>
     public void Initialize(towerScript tower)
     {
         targetTower = tower;
         RefreshStats();
     }
 
-    /// <summary>
-    /// Increases the target tower's damage. Wire to your damage upgrade button's OnClick.
-    /// </summary>
     public void UpgradeDamage()
     {
         targetTower.damage *= 1.05f;
         RefreshStats();
     }
 
-    /// <summary>
-    /// Decreases the target tower's fire rate interval (faster firing). Wire to your fire rate button's OnClick.
-    /// </summary>
     public void UpgradeFireRate()
     {
         targetTower.fireRate *= 0.95f;
@@ -70,9 +61,6 @@ public class TowerUpgradeScreen : MonoBehaviour
         RefreshStats();
     }
 
-    /// <summary>
-    /// Closes the upgrade screen and resumes the game. Wire to your close button's OnClick.
-    /// </summary>
     public void CloseScreen()
     {
         foreach (GameObject tower in Towers)
@@ -86,6 +74,35 @@ public class TowerUpgradeScreen : MonoBehaviour
         Time.timeScale = 1f;
         Destroy(gameObject);
     }
+    //Get this tower's type and upgrade it to the selected type, if it's already at the highest type then just refresh stats. Rockthrower -> Slingshot -> Spearthrower or Archer
+    public void towerTypeButton()
+    {
+        Debug.Log("någonting1");
+        switch (targetTower.thisTowerType)
+        {
+            case towerBaseClass.TowerType.ROCKTHROWER:
+                towerTypeButtons[0].GetComponent<UnityEngine.UI.Button>().interactable = true;
+                towerTypeButtons[1].GetComponent<UnityEngine.UI.Button>().interactable = false;
+                towerTypeButtons[2].GetComponent<UnityEngine.UI.Button>().interactable = false;
+                towerTypeButtons[0].GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => targetTower.setTowerType(towerBaseClass.TowerType.SLINGSHOT));
+                towerTypeButtons[0].GetComponentInChildren<TMP_Text>().text = "Upgrade to Slingshot";
+                towerTypeButtons[1].GetComponentInChildren<TMP_Text>().text = "No valid upgrade";
+                towerTypeButtons[2].GetComponentInChildren<TMP_Text>().text = "No valid upgrade";
+                break;
+            case towerBaseClass.TowerType.SLINGSHOT:
+                towerTypeButtons[0].GetComponent<UnityEngine.UI.Button>().interactable = true;
+                towerTypeButtons[1].GetComponent<UnityEngine.UI.Button>().interactable = true;
+                towerTypeButtons[2].GetComponent<UnityEngine.UI.Button>().interactable = false;
+                towerTypeButtons[0].GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => targetTower.setTowerType(towerBaseClass.TowerType.SPEARTHROWER));
+                towerTypeButtons[1].GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => targetTower.setTowerType(towerBaseClass.TowerType.ARCHER));
+                towerTypeButtons[0].GetComponentInChildren<TMP_Text>().text = "Upgrade to Spearthrower";
+                towerTypeButtons[1].GetComponentInChildren<TMP_Text>().text = "Upgrade to Archer";
+                towerTypeButtons[2].GetComponentInChildren<TMP_Text>().text = "No valid upgrade";
+                break;
+        }
+        Debug.Log("någonting2");
+        RefreshStats();
+    }
 
     private void RefreshStats()
     {
@@ -93,7 +110,7 @@ public class TowerUpgradeScreen : MonoBehaviour
         string damageDisplay = targetTower.damage.ToString("F1");
         string fireRateDisplay = bulletsPerSecond.ToString("F2");
         string critChanceDisplay = targetTower.critChance.ToString("F1");
-        string critDamageDisplay = ((targetTower.critDamage -1 ) * 100).ToString("F0");
+        string critDamageDisplay = ((targetTower.critDamage -1 ) * 100).ToString("F0");        
         if (statsText != null)
             statsText.text = $"Damage: {damageDisplay}\n\nFire Rate: {fireRateDisplay}/s\n\nCrit Chance: {critChanceDisplay}%\n\nCrit Damage: {critDamageDisplay}%";
     }
