@@ -12,14 +12,29 @@ public class towerScript : towerClass
     [SerializeField] private GameObject upgradeScreenPrefab;
 
     private GameObject playerStats;
+    private bool statsInitialized = false;
 
     void Start()
     {
         playerStats = GameObject.Find("playerStats");
         setTowerStats(thisTowerType);
         damage = this.damage * playerStats.GetComponent<playerStats>().damageUpgradeMultiplier;
-        fireRate = this.fireRate * playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier;        
+        fireRate = this.fireRate * playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier;
+        statsInitialized = true;
         StartCoroutine(firingRoutine());
+    }
+
+    void OnEnable()
+    {
+        // On first activation Start() hasn't run yet, so stats aren't ready
+        if (!statsInitialized) return;
+
+        StartCoroutine(firingRoutine());
+    }
+
+    void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     public void setTowerType(towerBaseClass.TowerType type)
@@ -61,7 +76,6 @@ public class towerScript : towerClass
 
     void OnMouseDown()
     {
-        // Prevent stacking multiple upgrade screens
         if (FindFirstObjectByType<TowerUpgradeScreen>() != null) return;
 
         Time.timeScale = 0f;

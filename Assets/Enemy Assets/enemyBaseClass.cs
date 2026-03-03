@@ -12,7 +12,7 @@ public class enemyBaseClass : MonoBehaviour
     public float health;
     public float damage;
     public float speed;
-    public float experienceValue;
+    public float experienceValue;    
     public float goldValue;
 
     public float Health

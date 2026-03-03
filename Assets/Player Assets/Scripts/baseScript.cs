@@ -22,6 +22,25 @@ public class baseScript : MonoBehaviour
             Debug.LogError("playerStats GameObject not found!");
         }
     }
+    void OnEnable()
+    {
+        GameObject playerStatsObj = GameObject.Find("playerStats");
+        if (playerStatsObj != null)
+        {
+            playerStatsComponent = playerStatsObj.GetComponent<playerStats>();
+            fireRate = playerStatsComponent.fireRate;
+            StartCoroutine(firingRoutine());
+        }
+        else
+        {
+            Debug.LogError("playerStats GameObject not found!");
+        }
+    }
+    void OnDisable()
+    {
+        StopAllCoroutines();
+
+    }
 
     void Update()
     {

@@ -10,11 +10,17 @@ public class levelUpUI : MonoBehaviour
     private GameObject playerStats;
     GameObject gameManager;
     public int currentLevel;
-    
+    GameObject[] Towers;
     private List<int> selectedPerkIndices = new List<int>();
     
     void Start()
     {
+        Towers = GameObject.FindGameObjectsWithTag("Tower"); 
+        foreach (GameObject tower in Towers)
+        {
+            tower.SetActive(false);
+        }
+
         playerStats = GameObject.Find("playerStats");
         gameManager = GameObject.Find("gameManager");   
         GameObject levelUpText = GameObject.Find("text1");
@@ -26,10 +32,10 @@ public class levelUpUI : MonoBehaviour
     {
         string[] perkNames = new string[]
         {
-            "Attack Speed +10%",
-            "Health +10%",
+            "Attack Speed +5%",
+            "Health +5%",
             "Gold +5%",
-            "Damage +10%",
+            "Damage +5%",
             "Experience +5%"
         };
 
@@ -75,18 +81,21 @@ public class levelUpUI : MonoBehaviour
                 ApplyExperience();
                 break;
         }
-        
+        foreach (GameObject tower in Towers)
+        {
+            tower.SetActive(true);
+        }
         gameManager.GetComponent<gameManager>().continueGame();
     }
 
     void ApplyAttackSpeed()
     {
-        playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier *= 1.1f;
+        playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier *= 1.05f;
     }
     
     void ApplyHealth()
     {
-        playerStats.GetComponent<playerStats>().healthUpgradeMultiplier += 0.1f;
+        playerStats.GetComponent<playerStats>().healthUpgradeMultiplier += 0.05f;
     }
     
     void ApplyGold()
@@ -96,7 +105,7 @@ public class levelUpUI : MonoBehaviour
     
     void ApplyDamage()
     {
-        playerStats.GetComponent<playerStats>().damageUpgradeMultiplier += 0.1f;
+        playerStats.GetComponent<playerStats>().damageUpgradeMultiplier += 0.05f;
     }
     
     void ApplyExperience()

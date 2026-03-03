@@ -11,8 +11,20 @@ public class TowerUpgradeScreen : MonoBehaviour
     private const float MinFireRate = 0.1f;
     GameObject parent;
     private towerScript targetTower;
+    GameObject[] Towers;
+    GameObject[] Bulles;
     void Start()
     {
+        Towers = GameObject.FindGameObjectsWithTag("Tower");
+        foreach (GameObject tower in Towers)
+        {
+            tower.SetActive(false);
+        }
+        Bulles = GameObject.FindGameObjectsWithTag("Bullet");
+        foreach (GameObject bullet in Bulles)
+        {
+            bullet.SetActive(false);
+        }
         parent = GameObject.Find("Canvas");
         gameObject.transform.SetParent(parent.transform);
         transform.position = parent.transform.position;
@@ -63,17 +75,26 @@ public class TowerUpgradeScreen : MonoBehaviour
     /// </summary>
     public void CloseScreen()
     {
+        foreach (GameObject tower in Towers)
+        {
+            tower.SetActive(true);
+        }
+        foreach (GameObject bullet in Bulles)
+        {
+            bullet.SetActive(true);
+        }
         Time.timeScale = 1f;
         Destroy(gameObject);
     }
 
     private void RefreshStats()
     {
-        string damageDisplay = targetTower.damage.ToString();
-        string fireRateDisplay = targetTower.fireRate.ToString();
-        string critChanceDisplay = targetTower.critChance.ToString();
-        string critDamageDisplay = ((targetTower.critDamage -1 ) * 100).ToString();
+        float bulletsPerSecond = 1f / targetTower.fireRate;
+        string damageDisplay = targetTower.damage.ToString("F1");
+        string fireRateDisplay = bulletsPerSecond.ToString("F2");
+        string critChanceDisplay = targetTower.critChance.ToString("F1");
+        string critDamageDisplay = ((targetTower.critDamage -1 ) * 100).ToString("F0");
         if (statsText != null)
-            statsText.text = $"Damage: {damageDisplay:F1}\n\nFire Rate: {fireRateDisplay:F2}/s\n\nCrit Chance: {critChanceDisplay:F3}%\n\nCrit Damage: {critDamageDisplay:F4}";
+            statsText.text = $"Damage: {damageDisplay}\n\nFire Rate: {fireRateDisplay}/s\n\nCrit Chance: {critChanceDisplay}%\n\nCrit Damage: {critDamageDisplay}%";
     }
 }

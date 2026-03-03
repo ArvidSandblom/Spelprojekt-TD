@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class playerStats : MonoBehaviour
-{
+{    
     int currentAge = 1;
     public float health = 100f;
     public float experiencePoints = 0f;
@@ -107,6 +107,12 @@ public class playerStats : MonoBehaviour
 
     private void FindUIReferences()
     {
+        GameObject ageTextObj = GameObject.Find("currentAgeText");
+        if (ageTextObj != null) 
+            ageText = ageTextObj.GetComponent<TMP_Text>();
+        GameObject ageBarObj = GameObject.Find("baseAgeBar");
+        if (ageBarObj != null) 
+            ageBar = ageBarObj.GetComponent<Image>();
         GameObject healthBarObj = GameObject.Find("baseHPGreen");
         if (healthBarObj != null) 
             healthBar = healthBarObj.GetComponent<Image>();        
@@ -137,5 +143,7 @@ public class playerStats : MonoBehaviour
 
         if (goldText != null)            
             goldText.text = "Gold: " + gold.ToString("F0");
+        if (ageText != null)
+            ageText.text = "Age: " + currentAge.ToString();
     }
 }

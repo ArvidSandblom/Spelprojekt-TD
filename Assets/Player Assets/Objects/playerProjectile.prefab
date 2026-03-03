@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3134843655255396174}
   m_Layer: 0
   m_Name: playerProjectile
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,8 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84fe35d1187295f47945b7545e9d7cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  findStrongest: 0
+  findClosest: 0
   missileSpeed: 5
   damage: 20
+  critChance: 0
+  critDamage: 0
 --- !u!61 &6357252355730047212
 BoxCollider2D:
   m_ObjectHideFlags: 0

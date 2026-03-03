@@ -9,7 +9,10 @@ public class enemyAI : enemyTypes
     void Start()
     {
         
-        target = GameObject.Find("Player").transform;
+        if (GameObject.Find("Player") != null)
+        {
+            target = GameObject.Find("Player").transform;
+        }
         randomiseEnemyTypes();
         setEnemyStats(thisEnemyType);
     }
@@ -17,13 +20,21 @@ public class enemyAI : enemyTypes
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        if (target != null)
+        {
+            attackPlayer();
+        }
         if (health <= 0)
         {
             GameObject.Find("playerStats").GetComponent<playerStats>().experiencePoints += experienceValue;
+            GameObject.Find("playerStats").GetComponent<playerStats>().agePoints += experienceValue;
             GameObject.Find("playerStats").GetComponent<playerStats>().gold += goldValue;
             Destroy(gameObject);
         }
+    }
+    void attackPlayer()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
