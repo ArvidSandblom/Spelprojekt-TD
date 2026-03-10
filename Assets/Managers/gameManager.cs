@@ -5,116 +5,126 @@ using UnityEngine.UI;
 public class gameManager : MonoBehaviour
 {
     private static gameManager gameManagerInstance;
+
     public GameObject tower;
-    
-    private Transform[] innerTowerPositions = new Transform[4];
-    GameObject player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        player = GameObject.Find("Player");
-        initializeInnerTowerPositions();
-        
-    }
+
+    [SerializeField] private GameObject[] innerTowerPositionPrefabs = new GameObject[4];
+
+    private const int GameSceneBuildIndex = 1;
+
+    private Transform[] innerTowerPositions;
+    private int towerIndex = 0;
+
     void Awake()
     {
-        DontDestroyOnLoad (this);
-            
-        if (gameManagerInstance == null) 
+        DontDestroyOnLoad(this);
+
+        if (gameManagerInstance == null)
         {
             gameManagerInstance = this;
-        } 
-        else 
+        }
+        else
         {
             Destroy(this.gameObject);
+            return;
         }
     }
-    // Update is called once per frame
-    void Update()
+
+    void Start()
     {
-        
+        SpawnInnerTowerPositions();
+
+        if (SceneManager.GetActiveScene().buildIndex == GameSceneBuildIndex)
+            WireAddTowerButton();
     }
 
-    void initializeInnerTowerPositions()
+    private void OnEnable()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex != GameSceneBuildIndex) return;
+
+        WireAddTowerButton();
+    }
+
+    /// <summary>
+    /// Instantiates each inner tower position prefab once and marks them DontDestroyOnLoad.
+    /// Safe to call multiple times — skips already-created positions.
+    /// </summary>
+    private void SpawnInnerTowerPositions()
+    {
+        innerTowerPositions = new Transform[innerTowerPositionPrefabs.Length];
+
+        for (int i = 0; i < innerTowerPositionPrefabs.Length; i++)
         {
-            for (int i = 0; i < innerTowerPositions.Length; i++)
+            if (innerTowerPositionPrefabs[i] == null)
             {
-                Vector3 position = player.transform.position;
-                switch (i)
-                {
-                    case 0:
-                        position = new Vector3(0.5f, 0, 0);
-                        break;
-                    case 1:
-                        position = new Vector3(0f, 0.5f, 0);
-                        break;
-                    case 2:
-                        position = new Vector3(-0.5f, 0, 0);
-                        break;
-                    case 3:
-                        position = new Vector3(0, -0.5f, 0);
-                        break;
-                }
-                GameObject innerTowerPosition = new GameObject("InnerTowerPosition" + (i + 1));
-                innerTowerPosition.transform.position = position;
-                innerTowerPositions[i] = innerTowerPosition.transform;
+                Debug.LogError($"gameManager: innerTowerPositionPrefabs[{i}] is not assigned.", this);
+                continue;
             }
+
+            GameObject posObj = Instantiate(innerTowerPositionPrefabs[i]);
+            DontDestroyOnLoad(posObj);
+            innerTowerPositions[i] = posObj.transform;
         }
     }
 
-    void timeScaleSwitch()
+    private void WireAddTowerButton()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        GameObject addTowerObj = GameObject.Find("addTower");
+        if (addTowerObj == null)
         {
-            if (Time.timeScale == 1)
-            {
-                Time.timeScale = 0;
-            }
-            else
-            {
-                Time.timeScale = 1;
-            }
+            Debug.LogWarning("gameManager: Could not find 'addTower' in scene.", this);
+            return;
         }
+
+        Button addTowerButton = addTowerObj.GetComponent<Button>();
+        if (addTowerButton == null) return;
+
+        addTowerButton.onClick.RemoveAllListeners();
+        addTowerButton.onClick.AddListener(instantiateBaseTower);
     }
 
-    public void openShop()
+    /// <summary>
+    /// Places a default tower at the next available inner tower position.
+    /// </summary>
+    public void instantiateBaseTower()
     {
-        
+        if (innerTowerPositions == null || towerIndex >= innerTowerPositions.Length)
+        {
+            Debug.LogWarning("gameManager: All tower positions are occupied.", this);
+            return;
+        }
+
+        Transform slot = innerTowerPositions[towerIndex];
+        if (slot == null)
+        {
+            Debug.LogError($"gameManager: innerTowerPositions[{towerIndex}] is null.", this);
+            return;
+        }
+
+        GameObject instantiatedTower = Instantiate(tower, slot.position, Quaternion.identity);
+        instantiatedTower.GetComponent<towerScript>().setTowerType(0);
+        DontDestroyOnLoad(instantiatedTower);
+        towerIndex++;
     }
 
-    public void levelUp()
-    {
-        
-    }
-
-    public void continueGame()
-    {
-        SceneManager.LoadScene(1);
-    }
-
-    public void exitGame()
-    {
-        Application.Quit();
-    }
-
-    public void mainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-    public void restartGame()
-    {
-        //GameObject.Find("playerStats").GetComponent<playerStats>().resetPlayerStats();
-        SceneManager.LoadScene(1);
-
-    }    
+    /// <summary>
+    /// Adds a specific tower type at its predefined world position.
+    /// </summary>
     public void addTower(string towerType)
     {
         Vector3 towerPos;
         towerBaseClass.TowerType type;
-        GameObject addedTower = Instantiate(tower, new Vector3(0, 0, 0), Quaternion.identity); 
-        DontDestroyOnLoad(addedTower);
+
         switch (towerType)
         {
             case "ROCKTHROWER":
@@ -138,22 +148,28 @@ public class gameManager : MonoBehaviour
                 towerPos = new Vector3(2, 2, 0);
                 break;
         }
-        addedTower.transform.position = towerPos;
+
+        GameObject addedTower = Instantiate(tower, towerPos, Quaternion.identity);
         addedTower.transform.localScale = new Vector3(3, 3, 1);
         addedTower.GetComponent<towerScript>().setTowerType(type);
-    }    
-    int towerIndex = 0;
-    public void instantiateBaseTower()
-    {
-        if (towerIndex < innerTowerPositions.Length)
-        {   
-            //Hitta sätt att hindra tornet från att förstöras:
-            //Alternativt: Skapa lista, spara spelobjektet genom att towerList.apend(tower)                      
-            GameObject instantiatedTower = Instantiate(tower, innerTowerPositions[towerIndex].position, Quaternion.identity);
-            instantiatedTower.GetComponent<towerScript>().setTowerType(0);
-            DontDestroyOnLoad(instantiatedTower);
-            towerIndex++;
-        }
+        DontDestroyOnLoad(addedTower);
     }
 
+    void timeScaleSwitch()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Time.timeScale = Time.timeScale == 1f ? 0f : 1f;
+    }
+
+    public void openShop() { }
+
+    public void levelUp() { }
+
+    public void continueGame() => SceneManager.LoadScene(1);
+
+    public void exitGame() => Application.Quit();
+
+    public void mainMenu() => SceneManager.LoadScene(0);
+
+    public void restartGame() => SceneManager.LoadScene(1);
 }

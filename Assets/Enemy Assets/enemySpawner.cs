@@ -5,13 +5,28 @@ public class enemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public static int enemiesDestroyed = 0; 
-    public static float spawnTimer = 2f;
+    public float spawnTimer = 2f;
+    public bool canSpawn = true;
+    private static enemySpawner enemyInstance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     void Start()
     {
         pickSpawnArea();
         StartCoroutine(SpawnEnemyRoutine());
+    }
+    void Awake()
+    {
+        DontDestroyOnLoad (this);
+            
+        if (enemyInstance == null) 
+        {
+            enemyInstance = this;
+        } 
+        else 
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -23,11 +38,14 @@ public class enemySpawner : MonoBehaviour
     {
         while (baseScript.alive)
         {
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-            pickSpawnArea();
-            if (enemiesDestroyed >= 10)
+            if (canSpawn)
             {
-                changeSpawnRate(0.9f);
+                Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+                pickSpawnArea();
+                if (enemiesDestroyed >= 10)
+                {
+                    changeSpawnRate(0.9f);
+                }
             }
             yield return new WaitForSeconds(spawnTimer);
             

@@ -11,6 +11,7 @@ public class levelUpUI : MonoBehaviour
     GameObject gameManager;
     public int currentLevel;
     GameObject[] Towers;
+    GameObject enemyManager;
     private List<int> selectedPerkIndices = new List<int>();
     
     void Start()
@@ -20,8 +21,8 @@ public class levelUpUI : MonoBehaviour
         {
             tower.SetActive(false);
         }
-        GameObject.Find("enemyManager").SetActive(false);
-
+        enemyManager = GameObject.Find("enemyManager");
+        enemyManager.GetComponent<enemySpawner>().canSpawn = false;
         playerStats = GameObject.Find("playerStats");
         gameManager = GameObject.Find("gameManager");   
         GameObject levelUpText = GameObject.Find("text1");
@@ -86,7 +87,7 @@ public class levelUpUI : MonoBehaviour
         {
             tower.SetActive(true);
         }
-        GameObject.Find("enemyManager").SetActive(true);
+        enemyManager.GetComponent<enemySpawner>().canSpawn = true;
         gameManager.GetComponent<gameManager>().continueGame();
     }
 

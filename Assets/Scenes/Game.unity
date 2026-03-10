@@ -1459,19 +1459,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1426432676}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2073523077}
-        m_TargetAssemblyTypeName: gameManager, Assembly-CSharp
-        m_MethodName: instantiateBaseTower
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1426432676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1853,17 +1841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e24278723731ac4fa47bc1b06603e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2073523077 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8381438384097327748, guid: de3ba404ef8483f4ea3078c9c92db293, type: 3}
-  m_PrefabInstance: {fileID: 8336618885033551731}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dcfbfa0a0af7924eb869405398eea2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1401429026702484150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1872,6 +1849,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1253719456232486031, guid: ee8daeba11196cb4a9387ae2944720d0, type: 3}
+      propertyPath: canSpawn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4028461085099080965, guid: ee8daeba11196cb4a9387ae2944720d0, type: 3}
       propertyPath: m_Name
       value: enemyManager
@@ -2109,6 +2090,22 @@ PrefabInstance:
       propertyPath: 'innerTowerPositions.Array.data[3]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8381438384097327748, guid: de3ba404ef8483f4ea3078c9c92db293, type: 3}
+      propertyPath: 'innerTowerPositionPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1711690428648181536, guid: 5a4c2d829856cbc4e80d6cf85dac08ac, type: 3}
+    - target: {fileID: 8381438384097327748, guid: de3ba404ef8483f4ea3078c9c92db293, type: 3}
+      propertyPath: 'innerTowerPositionPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4145604305841095268, guid: 4bed20e4d6a323d429e245d03bd3638d, type: 3}
+    - target: {fileID: 8381438384097327748, guid: de3ba404ef8483f4ea3078c9c92db293, type: 3}
+      propertyPath: 'innerTowerPositionPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5558311428081175794, guid: 2b49c6676fe33034b99d660e746f3e75, type: 3}
+    - target: {fileID: 8381438384097327748, guid: de3ba404ef8483f4ea3078c9c92db293, type: 3}
+      propertyPath: 'innerTowerPositionPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 262717345470795897, guid: 32276cc94a82e834d8805a3ad4c2adf5, type: 3}
     - target: {fileID: 8536750084417906360, guid: de3ba404ef8483f4ea3078c9c92db293, type: 3}
       propertyPath: m_Name
       value: gameManager
