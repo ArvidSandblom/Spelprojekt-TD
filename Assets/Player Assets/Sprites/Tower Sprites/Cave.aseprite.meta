@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 20e5f80b46b0e524f8f5f209ca8f9161
+guid: 0cbcc514b38cf5f45bbecfcfbb23d67a
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,72 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: Cave
     originalName: 
-    pivot: {x: 0.6666667, y: -0.44827586}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 80
-      width: 30
-      height: 29
-    spriteID: c0ed775a2c5b4384d82f9f3c8db0aa02
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 80}
-  - name: Frame_1
-    originalName: 
-    pivot: {x: 0.6551724, y: -0.5555556}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 44
-      y: 4
-      width: 29
-      height: 27
-    spriteID: 826315957b71af0489975c4368ba859b
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 44, y: 4}
-  - name: Frame_2
-    originalName: 
-    pivot: {x: 0.6774193, y: -0.44827586}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 43
-      width: 31
-      height: 29
-    spriteID: 89f9fec216959454dbccfc2f9a00c2f7
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 43}
-  - name: Frame_3
-    originalName: 
-    pivot: {x: 0.6875, y: -0.3548387}
+    pivot: {x: 0.5048077, y: -0.27702704}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -196,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 32
-      height: 31
-    spriteID: f09746197cbf284419098d7f7e8737ec
+      width: 208
+      height: 148
+    spriteID: 23d401fdffadca743bdcd2eaf4d1474c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -211,52 +148,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1070625448
+      value0: 2328219861
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Projectile Arrow
+    name: Cave
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: Cave
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 12
-        y: 13
-        width: 30
-        height: 29
-      spriteId: c0ed775a2c5b4384d82f9f3c8db0aa02
-    - name: Frame_1
-      frameIndex: 1
-      additiveSortOrder: 0
-      cellRect:
-        x: 13
-        y: 15
-        width: 29
-        height: 27
-      spriteId: 826315957b71af0489975c4368ba859b
-    - name: Frame_2
-      frameIndex: 2
-      additiveSortOrder: 0
-      cellRect:
-        x: 11
-        y: 13
-        width: 31
-        height: 29
-      spriteId: 89f9fec216959454dbccfc2f9a00c2f7
-    - name: Frame_3
-      frameIndex: 3
-      additiveSortOrder: 0
-      cellRect:
-        x: 10
-        y: 11
-        width: 32
-        height: 31
-      spriteId: f09746197cbf284419098d7f7e8737ec
+        x: 23
+        y: 41
+        width: 208
+        height: 148
+      spriteId: 23d401fdffadca743bdcd2eaf4d1474c
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -275,5 +185,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 64, y: 64}
-  previousTextureSize: {x: 128, y: 128}
+  canvasSize: {x: 256, y: 256}
+  previousTextureSize: {x: 256, y: 256}

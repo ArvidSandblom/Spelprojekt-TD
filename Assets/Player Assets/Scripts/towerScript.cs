@@ -5,15 +5,26 @@ using UnityEngine;
 public class towerScript : towerClass
 {
     public towerBaseClass.TowerType thisTowerType;
-    public Sprite[] towerSprites;
     public Sprite[] projectileSprites;
     public GameObject projectilePrefab;
+    [SerializeField] Sprite[] rockthrower;
+    [SerializeField] Sprite[] slinger;
+    [SerializeField] Sprite[]  spearthrower;
+    [SerializeField] Sprite[] archer;
+    public Sprite[] currentAnimation;
+    SpriteRenderer spriteRenderer;
+    int frameIndex = 0;
+    public float animationSpeed; // Time between frames in seconds
 
     [SerializeField] private GameObject upgradeScreenPrefab;
 
     private GameObject playerStats;
     private bool statsInitialized = false;
 
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     void Start()
     {
         playerStats = GameObject.Find("playerStats");
@@ -21,7 +32,12 @@ public class towerScript : towerClass
         damage = this.damage * playerStats.GetComponent<playerStats>().damageUpgradeMultiplier;
         fireRate = this.fireRate * playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier;
         statsInitialized = true;
-        StartCoroutine(firingRoutine());
+        if (currentAnimation != null && currentAnimation.Length > 0)
+        {
+            animationSpeed = fireRate / currentAnimation.Length;
+        }
+        StartCoroutine(AnimationAndFiringRoutine());
+
     }
 
     void OnEnable()
@@ -29,7 +45,7 @@ public class towerScript : towerClass
         // On first activation Start() hasn't run yet, so stats aren't ready
         if (!statsInitialized) return;
 
-        StartCoroutine(firingRoutine());
+        StartCoroutine(AnimationAndFiringRoutine());
     }
 
     void OnDisable()
@@ -49,30 +65,73 @@ public class towerScript : towerClass
         switch (thisTowerType)
         {
             case towerBaseClass.TowerType.ROCKTHROWER:
-                GetComponent<SpriteRenderer>().sprite = towerSprites[0];
+                ChangeAnimation(rockthrower);
+                //GetComponent<SpriteRenderer>().sprite = towerSprites[0];
                 break;
             case towerBaseClass.TowerType.SLINGSHOT:
-                GetComponent<SpriteRenderer>().sprite = towerSprites[1];
+                ChangeAnimation(slinger);
+                //GetComponent<SpriteRenderer>().sprite = towerSprites[1];
                 break;
             case towerBaseClass.TowerType.SPEARTHROWER:
-                GetComponent<SpriteRenderer>().sprite = towerSprites[2];
+                ChangeAnimation(spearthrower);
+                //GetComponent<SpriteRenderer>().sprite = towerSprites[2];
                 break;
             case towerBaseClass.TowerType.ARCHER:
-                GetComponent<SpriteRenderer>().sprite = towerSprites[3];
+                ChangeAnimation(archer);
+                //GetComponent<SpriteRenderer>().sprite = towerSprites[3];
                 break;
         }
     }
+    public void ChangeAnimation(Sprite[] animationToChangeTo)
+    {
+        if(currentAnimation != animationToChangeTo)
+        {
+            currentAnimation = animationToChangeTo;
+            animationSpeed = fireRate / currentAnimation.Length;
 
-    IEnumerator firingRoutine()
+            frameIndex = 0;            
+        }
+    }
+    IEnumerator AnimationAndFiringRoutine()
     {
         while (true)
         {
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            projectile.GetComponent<playerProjectile>().setProjectileStats(thisTowerType, damage, critChance, critDamage);
-            projectile.GetComponent<SpriteRenderer>().sprite = projectileSprites[(int)thisTowerType];
-            yield return new WaitForSeconds(fireRate);
+            if (currentAnimation != null && currentAnimation.Length > 0)
+            {
+                if (frameIndex >= currentAnimation.Length)
+                {
+                    frameIndex = 0;
+                }
+
+
+
+
+                    spriteRenderer.sprite = currentAnimation[frameIndex];
+                    frameIndex++;
+                    if (frameIndex == 7)
+                    {
+                        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+                        projectile.GetComponent<playerProjectile>().setProjectileStats(thisTowerType, damage, critChance, critDamage);
+                        projectile.GetComponent<SpriteRenderer>().sprite = projectileSprites[(int)thisTowerType];
+                    }
+                
+                    yield return new WaitForSeconds(animationSpeed);
+                
+            }
+            yield return null;
         }
     }
+
+    // IEnumerator firingRoutine()
+    // {
+    //     while (true)
+    //     {
+    //         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+    //         projectile.GetComponent<playerProjectile>().setProjectileStats(thisTowerType, damage, critChance, critDamage);
+    //         projectile.GetComponent<SpriteRenderer>().sprite = projectileSprites[(int)thisTowerType];
+    //         yield return new WaitForSeconds(fireRate);
+    //     }
+    // }
 
     void OnMouseDown()
     {

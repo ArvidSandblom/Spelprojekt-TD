@@ -46,6 +46,7 @@ public class TowerUpgradeScreen : MonoBehaviour
     public void UpgradeFireRate()
     {
         targetTower.fireRate *= 0.95f;
+        targetTower.animationSpeed = targetTower.fireRate / targetTower.currentAnimation.Length;
         RefreshStats();
     }
 

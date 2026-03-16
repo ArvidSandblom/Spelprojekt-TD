@@ -53,17 +53,50 @@ MonoBehaviour:
   critChance: 0
   critDamage: 0
   thisTowerType: 0
-  towerSprites:
-  - {fileID: -6367826566441062593, guid: 7f0dd8b4ba2e5864dbedb305277bca4f, type: 3}
-  - {fileID: 5318313328003405157, guid: ff754fdfb438cf94bb70517875f1132b, type: 3}
-  - {fileID: -4299088873095522494, guid: 8dca6b9adbd709545a0d482373b7b097, type: 3}
-  - {fileID: 267011330182911531, guid: 1453c539e05def74eae424cf3d45623e, type: 3}
   projectileSprites:
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   projectilePrefab: {fileID: 7326364588709399095, guid: ce76e4b46b4b3a74a8eb522c9313412f, type: 3}
+  rockthrower:
+  - {fileID: 7457884267368300340, guid: 7f0dd8b4ba2e5864dbedb305277bca4f, type: 3}
+  - {fileID: 1784997218972405551, guid: 7f0dd8b4ba2e5864dbedb305277bca4f, type: 3}
+  - {fileID: -2562354568125282952, guid: 7f0dd8b4ba2e5864dbedb305277bca4f, type: 3}
+  - {fileID: -1316739252846764979, guid: 7f0dd8b4ba2e5864dbedb305277bca4f, type: 3}
+  - {fileID: -1648063928140874780, guid: 7f0dd8b4ba2e5864dbedb305277bca4f, type: 3}
+  - {fileID: -5957798885106195056, guid: 7f0dd8b4ba2e5864dbedb305277bca4f, type: 3}
+  - {fileID: 5176375440332266330, guid: 7f0dd8b4ba2e5864dbedb305277bca4f, type: 3}
+  - {fileID: -270354001731311044, guid: 7f0dd8b4ba2e5864dbedb305277bca4f, type: 3}
+  slinger:
+  - {fileID: 2315544213885166233, guid: ff754fdfb438cf94bb70517875f1132b, type: 3}
+  - {fileID: 3893220323329341863, guid: ff754fdfb438cf94bb70517875f1132b, type: 3}
+  - {fileID: 6455812374640801455, guid: ff754fdfb438cf94bb70517875f1132b, type: 3}
+  - {fileID: -4974049473913676424, guid: ff754fdfb438cf94bb70517875f1132b, type: 3}
+  - {fileID: 1266387472818866764, guid: ff754fdfb438cf94bb70517875f1132b, type: 3}
+  - {fileID: 6226214839506195907, guid: ff754fdfb438cf94bb70517875f1132b, type: 3}
+  - {fileID: -3142874906022509193, guid: ff754fdfb438cf94bb70517875f1132b, type: 3}
+  - {fileID: 2225718053542823413, guid: ff754fdfb438cf94bb70517875f1132b, type: 3}
+  spearthrower:
+  - {fileID: -2707311943912409461, guid: 8dca6b9adbd709545a0d482373b7b097, type: 3}
+  - {fileID: -6797670089424035221, guid: 8dca6b9adbd709545a0d482373b7b097, type: 3}
+  - {fileID: 30922718139597862, guid: 8dca6b9adbd709545a0d482373b7b097, type: 3}
+  - {fileID: -1128684820053878266, guid: 8dca6b9adbd709545a0d482373b7b097, type: 3}
+  - {fileID: -941772581640226977, guid: 8dca6b9adbd709545a0d482373b7b097, type: 3}
+  - {fileID: 78330297263386365, guid: 8dca6b9adbd709545a0d482373b7b097, type: 3}
+  - {fileID: 9096589828974518266, guid: 8dca6b9adbd709545a0d482373b7b097, type: 3}
+  - {fileID: 2710074736374560966, guid: 8dca6b9adbd709545a0d482373b7b097, type: 3}
+  archer:
+  - {fileID: -5640549677299703974, guid: 1453c539e05def74eae424cf3d45623e, type: 3}
+  - {fileID: 5936154649364520193, guid: 1453c539e05def74eae424cf3d45623e, type: 3}
+  - {fileID: 8567678325426327437, guid: 1453c539e05def74eae424cf3d45623e, type: 3}
+  - {fileID: 3415726624835808488, guid: 1453c539e05def74eae424cf3d45623e, type: 3}
+  - {fileID: -2936095467586003024, guid: 1453c539e05def74eae424cf3d45623e, type: 3}
+  - {fileID: -5777148896498409386, guid: 1453c539e05def74eae424cf3d45623e, type: 3}
+  - {fileID: -5170800393203753468, guid: 1453c539e05def74eae424cf3d45623e, type: 3}
+  - {fileID: 7698368425144830930, guid: 1453c539e05def74eae424cf3d45623e, type: 3}
+  currentAnimation: []
+  animationSpeed: 0.1
   upgradeScreenPrefab: {fileID: 8507067598675859355, guid: 7d912caaa57c11d42adfe5b6f56a44ac, type: 3}
 --- !u!212 &2700411847323973119
 SpriteRenderer:
