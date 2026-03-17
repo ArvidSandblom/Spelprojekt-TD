@@ -11,10 +11,13 @@ public class towerScript : towerClass
     [SerializeField] Sprite[] slinger;
     [SerializeField] Sprite[]  spearthrower;
     [SerializeField] Sprite[] archer;
+    
     public Sprite[] currentAnimation;
     SpriteRenderer spriteRenderer;
+    GameObject childSprite;
     int frameIndex = 0;
     public float animationSpeed; // Time between frames in seconds
+    private Transform target;
 
     [SerializeField] private GameObject upgradeScreenPrefab;
 
@@ -23,7 +26,8 @@ public class towerScript : towerClass
 
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        childSprite = transform.GetChild(0).gameObject;
+        spriteRenderer = childSprite.GetComponent<SpriteRenderer>();
     }
     void Start()
     {
@@ -39,6 +43,84 @@ public class towerScript : towerClass
         StartCoroutine(AnimationAndFiringRoutine());
 
     }
+    private const float TargetRefreshInterval = 0.2f;
+    private float targetRefreshTimer = 0f;
+
+    void Update()
+{
+    targetRefreshTimer -= Time.deltaTime;
+    if (targetRefreshTimer <= 0f)
+    {
+        targetRefreshTimer = TargetRefreshInterval;
+        UpdateTarget();
+    }
+
+    if (target != null)
+    {
+        Vector2 direction = (target.position - transform.position).normalized;
+
+        // Clamp direction to upper hemisphere — prevents the sprite from
+        // rotating past horizontal and appearing upside down
+        if (direction.y < 0f)
+            direction = new Vector2(direction.x, 0f);
+
+        // Edge case: enemy is directly below (direction becomes zero after clamp)
+        if (direction == Vector2.zero)
+            direction = Vector2.right;
+        else
+            direction.Normalize();
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        childSprite.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+}
+
+
+    private void UpdateTarget()
+    {
+        if (findStrongest)
+            target = findStrongestEnemy();
+        else if (findClosest)
+            target = FindClosestEnemy();
+    }
+    Transform FindClosestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Transform closestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector2.Distance(transform.position, enemy.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemy.transform;
+            }
+        }
+
+        return closestEnemy;
+    }
+    Transform findStrongestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Transform strongestEnemy = null;
+        float highestHealth = 0f;
+
+        foreach (GameObject enemy in enemies)
+        {
+            enemyAI enemyScript = enemy.GetComponent<enemyAI>();
+            if (enemyScript != null && enemyScript.health > highestHealth)
+            {
+                highestHealth = enemyScript.health;
+                strongestEnemy = enemy.transform;
+            }
+        }
+
+        return strongestEnemy;
+    }
+
+
 
     void OnEnable()
     {
@@ -102,18 +184,16 @@ public class towerScript : towerClass
                 {
                     frameIndex = 0;
                 }
-
-
-
-
                     spriteRenderer.sprite = currentAnimation[frameIndex];
                     frameIndex++;
-                    if (frameIndex == 7)
+
+                    if (frameIndex == 7 && target != null)
                     {
                         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                         projectile.GetComponent<playerProjectile>().setProjectileStats(thisTowerType, damage, critChance, critDamage);
                         projectile.GetComponent<SpriteRenderer>().sprite = projectileSprites[(int)thisTowerType];
                     }
+
                 
                     yield return new WaitForSeconds(animationSpeed);
                 
@@ -121,18 +201,6 @@ public class towerScript : towerClass
             yield return null;
         }
     }
-
-    // IEnumerator firingRoutine()
-    // {
-    //     while (true)
-    //     {
-    //         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-    //         projectile.GetComponent<playerProjectile>().setProjectileStats(thisTowerType, damage, critChance, critDamage);
-    //         projectile.GetComponent<SpriteRenderer>().sprite = projectileSprites[(int)thisTowerType];
-    //         yield return new WaitForSeconds(fireRate);
-    //     }
-    // }
-
     void OnMouseDown()
     {
         if (FindFirstObjectByType<TowerUpgradeScreen>() != null) return;

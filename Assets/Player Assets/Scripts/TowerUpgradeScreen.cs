@@ -34,6 +34,7 @@ public class TowerUpgradeScreen : MonoBehaviour
     public void Initialize(towerScript tower)
     {
         targetTower = tower;
+        towerTypeButton();
         RefreshStats();
     }
 
@@ -78,7 +79,6 @@ public class TowerUpgradeScreen : MonoBehaviour
     //Get this tower's type and upgrade it to the selected type, if it's already at the highest type then just refresh stats. Rockthrower -> Slingshot -> Spearthrower or Archer
     public void towerTypeButton()
     {
-        Debug.Log("någonting1");
         switch (targetTower.thisTowerType)
         {
             case towerBaseClass.TowerType.ROCKTHROWER:
@@ -101,7 +101,6 @@ public class TowerUpgradeScreen : MonoBehaviour
                 towerTypeButtons[2].GetComponentInChildren<TMP_Text>().text = "No valid upgrade";
                 break;
         }
-        Debug.Log("någonting2");
         RefreshStats();
     }
 
