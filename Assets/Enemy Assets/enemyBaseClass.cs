@@ -14,7 +14,19 @@ public class enemyBaseClass : MonoBehaviour
     public float speed;
     public float experienceValue;    
     public float goldValue;
+    public float attackRate;
+    public float attackRange;
 
+    public float AttackRate
+    {
+        get;
+        set;
+    }
+    public float AttackRange
+    {
+        get;
+        set;
+    }
     public float Health
     {
         get;
@@ -48,6 +60,9 @@ public class enemyBaseClass : MonoBehaviour
     public void Die()
     {
         GameObject.Find("playerStats").GetComponent<playerStats>().experiencePoints += experienceValue;
+        GameObject.Find("playerStats").GetComponent<playerStats>().agePoints += experienceValue;
+        GameObject.Find("playerStats").GetComponent<playerStats>().gold += goldValue;
+        enemySpawner.enemiesDestroyed++;
         Destroy(gameObject);
     }    
     public void TakeDamage(float damageAmount)

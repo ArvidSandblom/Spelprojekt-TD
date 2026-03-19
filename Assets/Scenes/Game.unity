@@ -1846,7 +1846,7 @@ MonoBehaviour:
   agePointsToNextAge: 1000
   fireRate: 1
   gold: 0
-  damage: 50
+  damage: 5
   critChance: 10
   critDamage: 1.5
   xpMultiplierUpgradeAmount: 1

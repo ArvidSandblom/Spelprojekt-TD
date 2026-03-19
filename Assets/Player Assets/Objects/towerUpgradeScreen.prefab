@@ -1362,7 +1362,7 @@ GameObject:
   - component: {fileID: 5409606794622383782}
   - component: {fileID: 3777578786713205914}
   m_Layer: 5
-  m_Name: towerType & Level (TMP)
+  m_Name: towerType (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2962,6 +2962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsText: {fileID: 739116521714476514}
+  towerTypeText: {fileID: 3777578786713205914}
   towerTypeButtons:
   - {fileID: 5847177936773106551}
   - {fileID: 2101463133986269032}

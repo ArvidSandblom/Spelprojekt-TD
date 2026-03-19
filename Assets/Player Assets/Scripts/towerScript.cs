@@ -5,12 +5,21 @@ using UnityEngine;
 public class towerScript : towerClass
 {
     public towerBaseClass.TowerType thisTowerType;
-    public Sprite[] projectileSprites;
     public GameObject projectilePrefab;
+    [SerializeField] Sprite[] projectileRock;
+    [SerializeField] Sprite[] projectileSlinger;
+    [SerializeField] Sprite[] projectileSpear;
+    [SerializeField] Sprite[] projectileArcher;
     [SerializeField] Sprite[] rockthrower;
     [SerializeField] Sprite[] slinger;
     [SerializeField] Sprite[]  spearthrower;
     [SerializeField] Sprite[] archer;
+    
+    public int damageIndex;
+    public int fireRateIndex;
+    public int critChanceIndex;
+    public int critDamageIndex;
+
     
     public Sprite[] currentAnimation;
     SpriteRenderer spriteRenderer;
@@ -41,39 +50,27 @@ public class towerScript : towerClass
             animationSpeed = fireRate / currentAnimation.Length;
         }
         StartCoroutine(AnimationAndFiringRoutine());
+        
 
     }
     private const float TargetRefreshInterval = 0.2f;
     private float targetRefreshTimer = 0f;
 
     void Update()
-{
-    targetRefreshTimer -= Time.deltaTime;
-    if (targetRefreshTimer <= 0f)
     {
-        targetRefreshTimer = TargetRefreshInterval;
-        UpdateTarget();
+        targetRefreshTimer -= Time.deltaTime;
+        if (targetRefreshTimer <= 0f)
+        {
+            targetRefreshTimer = TargetRefreshInterval;
+            UpdateTarget();
+        }
+
+        if (target != null)
+        {
+            spriteRenderer.flipX = target.position.x < transform.position.x;
+        }
     }
 
-    if (target != null)
-    {
-        Vector2 direction = (target.position - transform.position).normalized;
-
-        // Clamp direction to upper hemisphere — prevents the sprite from
-        // rotating past horizontal and appearing upside down
-        if (direction.y < 0f)
-            direction = new Vector2(direction.x, 0f);
-
-        // Edge case: enemy is directly below (direction becomes zero after clamp)
-        if (direction == Vector2.zero)
-            direction = Vector2.right;
-        else
-            direction.Normalize();
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        childSprite.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-    }
-}
 
 
     private void UpdateTarget()
@@ -119,14 +116,11 @@ public class towerScript : towerClass
 
         return strongestEnemy;
     }
-
-
-
     void OnEnable()
     {
         // On first activation Start() hasn't run yet, so stats aren't ready
         if (!statsInitialized) return;
-
+        applyUpgrades();
         StartCoroutine(AnimationAndFiringRoutine());
     }
 
@@ -134,6 +128,43 @@ public class towerScript : towerClass
     {
         StopAllCoroutines();
     }
+
+
+    public void applyUpgrades()
+    {
+        switch (thisTowerType)
+        {
+            case TowerType.ROCKTHROWER:
+                damage = 10f; fireRate = 1f; critChance = 10f; critDamage = 1.5f;
+                break;
+            case TowerType.SLINGSHOT:
+                damage = 5f; fireRate = 0.5f; critChance = 10f; critDamage = 1.5f;
+                break;
+            case TowerType.SPEARTHROWER:
+                damage = 20f; fireRate = 1.5f; critChance = 10f; critDamage = 1.5f;
+                break;
+            case TowerType.ARCHER:
+                damage = 10f; fireRate = 0.5f; critChance = 10f; critDamage = 1.5f;
+                break;
+        }
+
+        for (int i = 0; i < damageIndex; i++)
+            damage *= 1.05f;
+
+        for (int i = 0; i < fireRateIndex; i++)
+            fireRate *= 0.95f;
+
+        for (int i = 0; i < critChanceIndex; i++)
+            critChance *= 1.05f;
+
+        for (int i = 0; i < critDamageIndex; i++)
+            critDamage *= 1.05f;
+
+        // Keep animationSpeed in sync whenever fireRate changes
+        if (currentAnimation != null && currentAnimation.Length > 0)
+            animationSpeed = fireRate / currentAnimation.Length;
+    }
+
 
     public void setTowerType(towerBaseClass.TowerType type)
     {
@@ -148,19 +179,15 @@ public class towerScript : towerClass
         {
             case towerBaseClass.TowerType.ROCKTHROWER:
                 ChangeAnimation(rockthrower);
-                //GetComponent<SpriteRenderer>().sprite = towerSprites[0];
                 break;
             case towerBaseClass.TowerType.SLINGSHOT:
                 ChangeAnimation(slinger);
-                //GetComponent<SpriteRenderer>().sprite = towerSprites[1];
                 break;
             case towerBaseClass.TowerType.SPEARTHROWER:
                 ChangeAnimation(spearthrower);
-                //GetComponent<SpriteRenderer>().sprite = towerSprites[2];
                 break;
             case towerBaseClass.TowerType.ARCHER:
                 ChangeAnimation(archer);
-                //GetComponent<SpriteRenderer>().sprite = towerSprites[3];
                 break;
         }
     }
@@ -178,6 +205,13 @@ public class towerScript : towerClass
     {
         while (true)
         {
+            if (target == null)
+            {
+                frameIndex = 0;
+                spriteRenderer.sprite = currentAnimation[frameIndex];
+                yield return null;
+                continue;
+            }
             if (currentAnimation != null && currentAnimation.Length > 0)
             {
                 if (frameIndex >= currentAnimation.Length)
@@ -191,7 +225,21 @@ public class towerScript : towerClass
                     {
                         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                         projectile.GetComponent<playerProjectile>().setProjectileStats(thisTowerType, damage, critChance, critDamage);
-                        projectile.GetComponent<SpriteRenderer>().sprite = projectileSprites[(int)thisTowerType];
+                        switch (thisTowerType)
+                        {
+                            case towerBaseClass.TowerType.ROCKTHROWER:
+                                projectile.GetComponent<playerProjectile>().currentAnimation = projectileRock;
+                                break;
+                            case towerBaseClass.TowerType.SLINGSHOT:
+                                projectile.GetComponent<playerProjectile>().currentAnimation = projectileSlinger;
+                                break;
+                            case towerBaseClass.TowerType.SPEARTHROWER:
+                                projectile.GetComponent<playerProjectile>().currentAnimation = projectileSpear;
+                                break;
+                            case towerBaseClass.TowerType.ARCHER:
+                                projectile.GetComponent<playerProjectile>().currentAnimation = projectileArcher;
+                                break;
+                        }
                     }
 
                 

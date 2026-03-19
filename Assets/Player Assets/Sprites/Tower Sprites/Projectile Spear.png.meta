@@ -1,0 +1,302 @@
+fileFormatVersion: 2
+guid: be76ab4b7b86b344f9693872317778cf
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7218670268125080393
+    second: Projectile Spear_0
+  - first:
+      213: -6678680973426812316
+    second: Projectile Spear_1
+  - first:
+      213: 1083842505859843119
+    second: Projectile Spear_2
+  - first:
+      213: -4244690766210683969
+    second: Projectile Spear_3
+  - first:
+      213: -5036835713104855524
+    second: Projectile Spear_4
+  - first:
+      213: 1813490889264073478
+    second: Projectile Spear_5
+  - first:
+      213: 339345948312713334
+    second: Projectile Spear_6
+  - first:
+      213: -6472888904746990513
+    second: Projectile Spear_7
+  - first:
+      213: -5548997115502557299
+    second: Projectile Spear_8
+  - first:
+      213: 8584679536266842770
+    second: Projectile Spear_9
+  - first:
+      213: 8659823187520006682
+    second: Projectile Spear_10
+  - first:
+      213: -1325306726304322243
+    second: Projectile Spear_11
+  - first:
+      213: -9220081164066037967
+    second: Projectile Spear_12
+  - first:
+      213: -2288422133334234599
+    second: Projectile Spear_13
+  - first:
+      213: 1624622329637265698
+    second: Projectile Spear_14
+  - first:
+      213: -9079586230165220685
+    second: Projectile Spear_15
+  - first:
+      213: 6145906803418809132
+    second: Projectile Spear_16
+  - first:
+      213: 6476026175946788920
+    second: Projectile Spear_17
+  - first:
+      213: 3173647360248576282
+    second: Projectile Spear_18
+  - first:
+      213: -4256548540314821876
+    second: Projectile Spear_19
+  - first:
+      213: -236392373361205870
+    second: Projectile Spear_20
+  - first:
+      213: -3387401019798773656
+    second: Projectile Spear_21
+  - first:
+      213: 4673231959701812774
+    second: Projectile Spear_22
+  - first:
+      213: 6075938971309774777
+    second: Projectile Spear_23
+  - first:
+      213: -9066324944948825789
+    second: Projectile Spear_24
+  - first:
+      213: -3103464315980057075
+    second: Projectile Spear_25
+  - first:
+      213: -7440010084502430540
+    second: Projectile Spear_26
+  - first:
+      213: 4110660603045003231
+    second: Projectile Spear_27
+  - first:
+      213: 8831786013948633785
+    second: Projectile Spear_28
+  - first:
+      213: 6478936585952951415
+    second: Projectile Spear_29
+  - first:
+      213: -7399306959181010628
+    second: Projectile Spear_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 256
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Projectile Spear_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94be44adc5edd2460800000000000000
+      internalID: 7218670268125080393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile Spear_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46a1cb23a0f8053a0800000000000000
+      internalID: -6678680973426812316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile Spear_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f24ce3244059a0f00800000000000000
+      internalID: 1083842505859843119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile Spear_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbba1aacc34d715c0800000000000000
+      internalID: -4244690766210683969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f19030e5627ed1a44be473bc1e5725ec
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Projectile Spear_0: 7218670268125080393
+      Projectile Spear_1: -6678680973426812316
+      Projectile Spear_2: 1083842505859843119
+      Projectile Spear_3: -4244690766210683969
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

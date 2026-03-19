@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class playerProjectile : MonoBehaviour
@@ -10,10 +11,15 @@ public class playerProjectile : MonoBehaviour
     public float damage;
     public float critChance;
     public float critDamage;
+    public Sprite[] currentAnimation;
+    SpriteRenderer spriteRenderer;
+    GameObject childSprite;
+    int frameIndex = 0;
+    public float animationSpeed = 0.1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
         if (findStrongest)
         {
             target = findStrongestEnemy();
@@ -26,11 +32,15 @@ public class playerProjectile : MonoBehaviour
         if (target != null)
         {
             targetDirection = (target.position - transform.position).normalized;
+            Vector2 direction = target.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
         }
         else
         {
             targetDirection = Vector2.zero;
         }
+        StartCoroutine(AnimationRoutine());
         
         Destroy(gameObject, 5f);
 
@@ -40,6 +50,33 @@ public class playerProjectile : MonoBehaviour
     void Update()
     {
         transform.position += (Vector3)targetDirection * missileSpeed * Time.deltaTime;       
+    }
+    public void ChangeAnimation(Sprite[] animationToChangeTo)
+    {
+        if(currentAnimation != animationToChangeTo)
+        {
+            currentAnimation = animationToChangeTo;
+            frameIndex = 0;            
+        }
+    }
+    IEnumerator AnimationRoutine()
+    {
+        while (true)
+        {
+            
+            if (currentAnimation != null && currentAnimation.Length > 0)
+            {
+                if (frameIndex >= currentAnimation.Length)
+                {
+                    frameIndex = 0;
+                }
+                spriteRenderer.sprite = currentAnimation[frameIndex];
+                frameIndex++;
+                yield return new WaitForSeconds(animationSpeed);
+                
+            }
+            yield return null;
+        }
     }
 
     Transform FindClosestEnemy()
@@ -99,11 +136,11 @@ public class playerProjectile : MonoBehaviour
                 int critRoll = Random.Range(0,101);
                 if (critRoll < critChance)
                 {
-                    damage *= critDamage;
+                    enemy.TakeDamage(damage * critDamage);
                 }
                 else 
                 {
-                    enemy.health -= damage;
+                    enemy.TakeDamage(damage);
                 }
             }
             Destroy(this.gameObject);

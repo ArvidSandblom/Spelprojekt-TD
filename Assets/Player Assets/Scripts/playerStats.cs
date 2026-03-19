@@ -15,7 +15,7 @@ public class playerStats : MonoBehaviour
     public float agePointsToNextAge = 1000f;
     public float fireRate = 1f;
     public float gold = 0f;
-    public float damage = 20f;
+    public float damage = 5f;
     public float critChance = 10f;
     public float critDamage = 1.5f;
     public float xpMultiplierUpgradeAmount = 1f;
