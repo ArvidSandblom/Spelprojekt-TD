@@ -188,8 +188,22 @@ MonoBehaviour:
   attackRate: 0
   attackRange: 0
   thisEnemyType: 0
-  CavemanAttack: []
-  CavemanWalk: []
+  CavemanAttack:
+  - {fileID: 583808413243846568, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
+  - {fileID: -1841993158519862605, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
+  - {fileID: -761358058401160905, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
+  - {fileID: -218315364013747603, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
+  - {fileID: 8027807292420306142, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
+  - {fileID: -2521054591914337178, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
+  - {fileID: -3342860006838624595, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
+  - {fileID: -6213635005426111853, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
+  CavemanWalk:
+  - {fileID: -5748845060960184502, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  - {fileID: -973396043336297706, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  - {fileID: -6144016522834193152, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  - {fileID: -2229348557309533169, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  - {fileID: 3987859051835804847, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  - {fileID: -2485287286309411997, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
   Rockthrower: []
   RockthrowerAttack: []
   Dinorider: []

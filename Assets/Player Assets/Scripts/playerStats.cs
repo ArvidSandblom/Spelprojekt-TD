@@ -83,6 +83,15 @@ public class playerStats : MonoBehaviour
         levelText.text = level.ToString();
         SceneManager.LoadScene(2);
     }
+    public void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+        if (health <= 0f)
+        {
+            health = 0f;
+            alive = false;
+        }
+    }
     void AgeUp()
     {
         currentAge++;
