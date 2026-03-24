@@ -92,6 +92,7 @@ public class enemyAI : enemyTypes
             }
             if (currentAnimation == CavemanAttack || currentAnimation == RockthrowerAttack || currentAnimation == DinoriderAttack)
             {
+                
                 if (frameIndex == currentAnimation.Length - 1)
                 {
                     damagePlayer();

@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using Mono.Cecil;
 
 public class TowerUpgradeScreen : MonoBehaviour
 {
@@ -10,12 +9,14 @@ public class TowerUpgradeScreen : MonoBehaviour
     private const float DamageUpgradeAmount = 5f;
     private const float FireRateReductionAmount = 0.1f;
     private const float MinFireRate = 0.1f;
+    GameObject playerStatsObject;
     GameObject parent;
     private towerScript targetTower;
     GameObject[] Towers;
     GameObject[] Bulles;
     void Start()
     {
+        playerStatsObject = GameObject.Find("playerStats");
         Towers = GameObject.FindGameObjectsWithTag("Tower");
         foreach (GameObject tower in Towers)
         {
@@ -94,9 +95,10 @@ public class TowerUpgradeScreen : MonoBehaviour
             towerTypeButtons[0].GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => RefreshStats());
             towerTypeButtons[0].GetComponentInChildren<TMP_Text>().text = "Upgrade to Slingshot";
             towerTypeButtons[1].GetComponentInChildren<TMP_Text>().text = "No valid upgrade";
-            towerTypeButtons[2].GetComponentInChildren<TMP_Text>().text = "No valid upgrade";               
+            towerTypeButtons[2].GetComponentInChildren<TMP_Text>().text = "No valid upgrade"; 
+            RefreshStats();              
         }
-        else if(targetTower.thisTowerType == towerBaseClass.TowerType.SLINGSHOT && playerStats.currentAge >= 1)
+        else if(targetTower.thisTowerType == towerBaseClass.TowerType.SLINGSHOT && playerStatsObject.GetComponent<playerStats>().currentAge >= 1)
         {
             towerTypeButtons[0].GetComponent<UnityEngine.UI.Button>().interactable = true;
             towerTypeButtons[1].GetComponent<UnityEngine.UI.Button>().interactable = true;

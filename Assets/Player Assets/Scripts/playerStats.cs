@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class playerStats : MonoBehaviour
 {    
-    public static int currentAge = 1;
+    public int currentAge = 1;
     public float health = 100f;
     public float experiencePoints = 0f;
     public float agePoints = 0f;
