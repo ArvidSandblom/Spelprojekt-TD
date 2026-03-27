@@ -256,6 +256,20 @@ public class towerScript : towerClass
         Time.timeScale = 0f;
         upgradeTowerStats();
     }
+    public void setAsParentObject(Transform obj)
+    {
+        obj.transform.SetParent(transform);
+        obj.transform.localPosition = Vector3.zero;
+    }
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0f)
+        {
+            Destroy(gameObject);
+
+        }
+    }
 
     private void upgradeTowerStats()
     {

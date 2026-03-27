@@ -116,7 +116,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.5831912, y: -1.6166408, z: 0.049160358}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2879287737034659477}
@@ -180,15 +180,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ea83eecb9d5894db79caa3a227ff1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  damage: 0
-  speed: 0
-  experienceValue: 0
-  goldValue: 0
-  attackRate: 0
-  attackRange: 0
-  thisEnemyType: 0
-  CavemanAttack:
+  cavemanWalk:
+  - {fileID: -5748845060960184502, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  - {fileID: -973396043336297706, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  - {fileID: -6144016522834193152, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  - {fileID: -2229348557309533169, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  - {fileID: 3987859051835804847, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  - {fileID: -2485287286309411997, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
+  cavemanAttack:
   - {fileID: 583808413243846568, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
   - {fileID: -1841993158519862605, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
   - {fileID: -761358058401160905, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
@@ -197,18 +196,41 @@ MonoBehaviour:
   - {fileID: -2521054591914337178, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
   - {fileID: -3342860006838624595, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
   - {fileID: -6213635005426111853, guid: 2cc6d6fd2a4f97b47b3587e5a1cf9073, type: 3}
-  CavemanWalk:
-  - {fileID: -5748845060960184502, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
-  - {fileID: -973396043336297706, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
-  - {fileID: -6144016522834193152, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
-  - {fileID: -2229348557309533169, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
-  - {fileID: 3987859051835804847, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
-  - {fileID: -2485287286309411997, guid: 5a8e5f66c433ae54d9d63ce22e02489a, type: 3}
-  Rockthrower: []
-  RockthrowerAttack: []
-  Dinorider: []
-  DinoriderAttack: []
-  currentAnimation: []
+  rockThrowerWalk:
+  - {fileID: 5009890417365284799, guid: 128f5c223dc47f64194140e3fbb9d29a, type: 3}
+  - {fileID: 303683625099208735, guid: 128f5c223dc47f64194140e3fbb9d29a, type: 3}
+  - {fileID: -4052117568110440268, guid: 128f5c223dc47f64194140e3fbb9d29a, type: 3}
+  - {fileID: 8363594171606189317, guid: 128f5c223dc47f64194140e3fbb9d29a, type: 3}
+  - {fileID: 6855627375549565011, guid: 128f5c223dc47f64194140e3fbb9d29a, type: 3}
+  - {fileID: 6384454004523787786, guid: 128f5c223dc47f64194140e3fbb9d29a, type: 3}
+  rockThrowerAttack:
+  - {fileID: -3564273634968032192, guid: 1663505980ec56d4cb92b553b31d3e68, type: 3}
+  - {fileID: 6441724100827146817, guid: 1663505980ec56d4cb92b553b31d3e68, type: 3}
+  - {fileID: -8273810783840451805, guid: 1663505980ec56d4cb92b553b31d3e68, type: 3}
+  - {fileID: 8514974512839663514, guid: 1663505980ec56d4cb92b553b31d3e68, type: 3}
+  - {fileID: 7781421996794873419, guid: 1663505980ec56d4cb92b553b31d3e68, type: 3}
+  - {fileID: 6747045903552134885, guid: 1663505980ec56d4cb92b553b31d3e68, type: 3}
+  - {fileID: 3768256435818051257, guid: 1663505980ec56d4cb92b553b31d3e68, type: 3}
+  - {fileID: 4213735488624205060, guid: 1663505980ec56d4cb92b553b31d3e68, type: 3}
+  dinoriderWalk: []
+  dinoriderAttack: []
+  rockProjectileAnimation:
+  - {fileID: 6570611755429794977, guid: afdc899dccacde246ba8227a7a0dd223, type: 3}
+  - {fileID: 5007805399196959534, guid: afdc899dccacde246ba8227a7a0dd223, type: 3}
+  - {fileID: 1111445530380086615, guid: afdc899dccacde246ba8227a7a0dd223, type: 3}
+  - {fileID: -5201362124038478219, guid: afdc899dccacde246ba8227a7a0dd223, type: 3}
+  health: 0
+  damage: 0
+  speed: 0
+  experienceValue: 0
+  goldValue: 0
+  attackRate: 0
+  attackRange: 0
+  isRanged: 0
+  thisEnemyType: 0
+  playerStats: {fileID: 0}
+  projectile: {fileID: 8299358388961388461, guid: a71fcdc2f102136439787ecb915eead3, type: 3}
+  currentAttackAnimation: []
   animationSpeed: 0
 --- !u!50 &5542672131597645892
 Rigidbody2D:

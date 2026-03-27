@@ -17,15 +17,18 @@ public class enemyTypes : enemyBaseClass
                 goldValue = 3f;
                 attackRate = 1f;
                 attackRange = 1f;
+                isRanged = false;
                 break;
             case EnemyType.ROCKTHROWER:
-                speed = 3f;
+                speed = 1.5f;
                 health = 30f;
                 damage = 15f;
                 experienceValue = 15f;
                 goldValue = 5f;
                 attackRate = 1.5f;
                 attackRange = 3f;
+                isRanged = true;
+
                 break;
             case EnemyType.DINORIDER:
                 speed = 1.5f;
@@ -35,6 +38,7 @@ public class enemyTypes : enemyBaseClass
                 goldValue = 10f;
                 attackRate = 2f;
                 attackRange = 1.5f;
+                isRanged = false;
                 break;
         }
     }

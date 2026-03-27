@@ -9,14 +9,14 @@ public class towerBaseClass : MonoBehaviour
         SPEARTHROWER,
         ARCHER,
 
-    }
-
+    }    
     public float damage;
     public float fireRate;
     public bool findClosest;
     public bool findStrongest;
     public float critChance;
     public float critDamage;
+    public float health;
     public TowerType towerType
     {
         get;
@@ -48,6 +48,11 @@ public class towerBaseClass : MonoBehaviour
         set;
     }
     public float CritDamage
+    {
+        get;
+        set;
+    }
+    public float Health
     {
         get;
         set;

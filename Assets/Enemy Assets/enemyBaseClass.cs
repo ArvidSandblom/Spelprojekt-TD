@@ -9,6 +9,13 @@ public class enemyBaseClass : MonoBehaviour
         ROCKTHROWER,
         DINORIDER
     }
+    public Sprite[] cavemanWalk;
+    public Sprite[] cavemanAttack;
+    public Sprite[] rockThrowerWalk;
+    public Sprite[] rockThrowerAttack;
+    public Sprite[] dinoriderWalk;
+    public Sprite[] dinoriderAttack;
+    public Sprite[] rockProjectileAnimation;
     public float health;
     public float damage;
     public float speed;
@@ -16,6 +23,7 @@ public class enemyBaseClass : MonoBehaviour
     public float goldValue;
     public float attackRate;
     public float attackRange;
+    public bool isRanged;
 
     public float AttackRate
     {
@@ -52,7 +60,22 @@ public class enemyBaseClass : MonoBehaviour
         get;
         set;
     }
+    public bool IsRanged
+    {
+        get;
+        set;
+    }
     public EnemyType enemyType
+    {
+        get;
+        set;
+    }
+    public Sprite[] currentAnimation
+    {
+        get;
+        set;
+    }
+    public Sprite[] projectileAnimation
     {
         get;
         set;

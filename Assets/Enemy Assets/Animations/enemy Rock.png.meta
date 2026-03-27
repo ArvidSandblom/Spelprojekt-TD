@@ -1,0 +1,293 @@
+fileFormatVersion: 2
+guid: afdc899dccacde246ba8227a7a0dd223
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6570611755429794977
+    second: enemy Rock_0
+  - first:
+      213: 5007805399196959534
+    second: enemy Rock_1
+  - first:
+      213: 1111445530380086615
+    second: enemy Rock_2
+  - first:
+      213: -5201362124038478219
+    second: enemy Rock_3
+  - first:
+      213: -4646271573627700902
+    second: enemy Rock_4
+  - first:
+      213: -6388841839572003372
+    second: enemy Rock_5
+  - first:
+      213: 6291531293482642511
+    second: enemy Rock_6
+  - first:
+      213: 4603294224463986561
+    second: enemy Rock_7
+  - first:
+      213: -2202005185645567803
+    second: enemy Rock_8
+  - first:
+      213: -3456390421068315493
+    second: enemy Rock_9
+  - first:
+      213: -244316339493888991
+    second: enemy Rock_10
+  - first:
+      213: 3039911853196529946
+    second: enemy Rock_11
+  - first:
+      213: 7027439807105367034
+    second: enemy Rock_12
+  - first:
+      213: 2064372665588237978
+    second: enemy Rock_13
+  - first:
+      213: -2117858989151199847
+    second: enemy Rock_14
+  - first:
+      213: 979986813991609373
+    second: enemy Rock_15
+  - first:
+      213: -2824657054758960512
+    second: enemy Rock_16
+  - first:
+      213: -1319504676405685788
+    second: enemy Rock_17
+  - first:
+      213: 2742377937718494419
+    second: enemy Rock_18
+  - first:
+      213: -7595749701820233077
+    second: enemy Rock_19
+  - first:
+      213: -9147817039025861753
+    second: enemy Rock_20
+  - first:
+      213: 4763185815527000794
+    second: enemy Rock_21
+  - first:
+      213: -7416594304354874296
+    second: enemy Rock_22
+  - first:
+      213: -3509689684245090574
+    second: enemy Rock_23
+  - first:
+      213: -1455577133937533387
+    second: enemy Rock_24
+  - first:
+      213: 7891752512081448803
+    second: enemy Rock_25
+  - first:
+      213: 5658281107160458648
+    second: enemy Rock_26
+  - first:
+      213: 1486378025277931651
+    second: enemy Rock_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 256
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemy Rock_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a4166734908f2b50800000000000000
+      internalID: 6570611755429794977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy Rock_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e230b636a7c4f7540800000000000000
+      internalID: 5007805399196959534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy Rock_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75d208932d5ac6f00800000000000000
+      internalID: 1111445530380086615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy Rock_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 576e388c4bc01d7b0800000000000000
+      internalID: -5201362124038478219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 16fa74965a6f37243a87d1f930a077c2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      enemy Rock_0: 6570611755429794977
+      enemy Rock_1: 5007805399196959534
+      enemy Rock_2: 1111445530380086615
+      enemy Rock_3: -5201362124038478219
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

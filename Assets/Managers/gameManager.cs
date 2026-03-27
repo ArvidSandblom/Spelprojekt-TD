@@ -59,6 +59,7 @@ public class gameManager : MonoBehaviour
     /// Instantiates each inner tower position prefab once and marks them DontDestroyOnLoad.
     /// Safe to call multiple times — skips already-created positions.
     /// </summary>
+    // TODO: Gör tornen till barn till positionerna istället för att ha separata position-prefabs, så att om tornet dör så blir positionen ledig igen.
     private void SpawnInnerTowerPositions()
     {
         innerTowerPositions = new Transform[innerTowerPositionPrefabs.Length];
@@ -152,6 +153,7 @@ public class gameManager : MonoBehaviour
         GameObject addedTower = Instantiate(tower, towerPos, Quaternion.identity);
         addedTower.transform.localScale = new Vector3(3, 3, 1);
         addedTower.GetComponent<towerScript>().setTowerType(type);
+        addedTower.GetComponent<towerScript>().setAsParentObject(innerTowerPositions[towerIndex]);
         DontDestroyOnLoad(addedTower);
     }
 

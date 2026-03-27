@@ -5,14 +5,17 @@ public class enemyAI : enemyTypes
 {
     private Transform target;    
     public EnemyType thisEnemyType;
-    [SerializeField] Sprite[] CavemanAttack;
-    [SerializeField] Sprite[] CavemanWalk;
-    [SerializeField] Sprite[] RockthrowerWalk;
-    [SerializeField] Sprite[] RockthrowerAttack;
-    [SerializeField] Sprite[] DinoriderWalk;
-    [SerializeField] Sprite[] DinoriderAttack;
+
+    
+    // [SerializeField] Sprite[] CavemanAttack;
+    // [SerializeField] Sprite[] CavemanWalk;
+    // [SerializeField] Sprite[] RockthrowerWalk;
+    // [SerializeField] Sprite[] RockthrowerAttack;
+    // [SerializeField] Sprite[] DinoriderWalk;
+    // [SerializeField] Sprite[] DinoriderAttack;
     [SerializeField] GameObject playerStats;
-    public Sprite[] currentAnimation;
+    // public Sprite[] currentAnimation;
+    [SerializeField] GameObject projectile;
     public Sprite[] currentAttackAnimation;
     SpriteRenderer spriteRenderer;
     GameObject childObject;
@@ -78,7 +81,7 @@ public class enemyAI : enemyTypes
     {
         while (true)
         {
-            if (currentAnimation == CavemanWalk || currentAnimation == RockthrowerWalk || currentAnimation == DinoriderWalk)
+            if (currentAnimation == cavemanWalk || currentAnimation == rockThrowerWalk || currentAnimation == dinoriderWalk)
             {
                 animationSpeed = speed / currentAnimation.Length;
                 animationSpeed *= 0.5f;
@@ -90,7 +93,7 @@ public class enemyAI : enemyTypes
                 yield return null;
                 continue;
             }
-            if (currentAnimation == CavemanAttack || currentAnimation == RockthrowerAttack || currentAnimation == DinoriderAttack)
+            if (currentAnimation == cavemanAttack || currentAnimation == rockThrowerAttack || currentAnimation == dinoriderAttack)
             {
                 
                 if (frameIndex == currentAnimation.Length - 1)
@@ -130,7 +133,13 @@ public class enemyAI : enemyTypes
     }
     void damagePlayer()
     {    
-        if (target != null)
+        if (target != null && isRanged == true)
+        {
+            GameObject projectileInstance = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y - 0.5f, 0f), Quaternion.identity);
+            projectileInstance.GetComponent<enemyProjectile>().ChangeAnimation(rockProjectileAnimation);
+            projectileInstance.GetComponent<enemyProjectile>().damage = damage;
+        }
+        else if(target != null)
         {
             playerStats.GetComponent<playerStats>().TakeDamage(damage);
         }
@@ -181,28 +190,29 @@ public class enemyAI : enemyTypes
         {
             case 0:
                 thisEnemyType = EnemyType.CAVEMAN;
-                currentAnimation = CavemanWalk;
-                currentAttackAnimation = CavemanAttack;
+                currentAnimation = cavemanWalk;
+                currentAttackAnimation = cavemanAttack;
                 break;
             case 1:
                 thisEnemyType = EnemyType.CAVEMAN;
-                currentAnimation = CavemanWalk;
-                currentAttackAnimation = CavemanAttack;
+                currentAnimation = cavemanWalk;
+                currentAttackAnimation = cavemanAttack;
                 break;
             case 2:
-                thisEnemyType = EnemyType.CAVEMAN;
-                currentAnimation = CavemanWalk;
-                currentAttackAnimation = CavemanAttack;
+                thisEnemyType = EnemyType.ROCKTHROWER;
+                currentAnimation = rockThrowerWalk;
+                currentAttackAnimation = rockThrowerAttack;
                 break;
             case 3:
-                thisEnemyType = EnemyType.CAVEMAN;
-                currentAnimation = CavemanWalk;
-                currentAttackAnimation = CavemanAttack;
+                thisEnemyType = EnemyType.ROCKTHROWER;
+                currentAnimation = rockThrowerWalk;
+                currentAttackAnimation = rockThrowerAttack;
                 break;
             case 4:
-                thisEnemyType = EnemyType.CAVEMAN;
-                currentAnimation = CavemanWalk;
-                currentAttackAnimation = CavemanAttack;
+                randomiseEnemyTypes();
+                // thisEnemyType = EnemyType.DINORIDER;
+                // currentAnimation = dinoriderWalk;
+                // currentAttackAnimation = dinoriderAttack;
                 break;
         }
     }
