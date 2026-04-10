@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class towerScript : towerClass
 {
@@ -19,6 +20,7 @@ public class towerScript : towerClass
     public int fireRateIndex;
     public int critChanceIndex;
     public int critDamageIndex;
+    Image healthBar;
 
     
     public Sprite[] currentAnimation;
@@ -45,6 +47,7 @@ public class towerScript : towerClass
         damage = this.damage * playerStats.GetComponent<playerStats>().damageUpgradeMultiplier;
         fireRate = this.fireRate * playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier;
         statsInitialized = true;
+        healthBar = childSprite.transform.Find("towerHealth").GetComponent<Image>();
         if (currentAnimation != null && currentAnimation.Length > 0)
         {
             animationSpeed = fireRate / currentAnimation.Length;
@@ -68,6 +71,10 @@ public class towerScript : towerClass
         if (target != null)
         {
             spriteRenderer.flipX = target.position.x < transform.position.x;
+        }
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = health / 100f;
         }
     }
 
@@ -267,7 +274,6 @@ public class towerScript : towerClass
         if (health <= 0f)
         {
             Destroy(gameObject);
-
         }
     }
 

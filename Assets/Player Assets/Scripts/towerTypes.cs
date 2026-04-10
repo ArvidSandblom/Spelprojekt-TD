@@ -13,6 +13,7 @@ public class towerClass : towerBaseClass
                 fireRate = 1f;
                 critChance = 10f;
                 critDamage = 1.5f;
+                health = 100f;
                 findClosest = true;
                 findStrongest = false;
                 break;
@@ -21,6 +22,7 @@ public class towerClass : towerBaseClass
                 fireRate = 0.5f;                
                 critChance = 10f;
                 critDamage = 1.5f;
+                health = 100f;
                 findClosest = false;
                 findStrongest = true;
                 break;
@@ -29,6 +31,7 @@ public class towerClass : towerBaseClass
                 fireRate = 1.5f;
                 critChance = 10f;
                 critDamage = 1.5f;
+                health = 100f;
                 findClosest = false;
                 findStrongest = true;
                 break;
@@ -37,6 +40,7 @@ public class towerClass : towerBaseClass
                 fireRate = 0.5f;
                 critChance = 10f;
                 critDamage = 1.5f;
+                health = 100f;
                 findClosest = true;
                 findStrongest = false;
                 break;

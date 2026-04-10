@@ -13,7 +13,6 @@ public class gameManager : MonoBehaviour
     private const int GameSceneBuildIndex = 1;
 
     private Transform[] innerTowerPositions;
-    private int towerIndex = 0;
 
     void Awake()
     {
@@ -57,9 +56,7 @@ public class gameManager : MonoBehaviour
 
     /// <summary>
     /// Instantiates each inner tower position prefab once and marks them DontDestroyOnLoad.
-    /// Safe to call multiple times — skips already-created positions.
     /// </summary>
-    // TODO: Gör tornen till barn till positionerna istället för att ha separata position-prefabs, så att om tornet dör så blir positionen ledig igen.
     private void SpawnInnerTowerPositions()
     {
         innerTowerPositions = new Transform[innerTowerPositionPrefabs.Length];
@@ -95,66 +92,61 @@ public class gameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Places a default tower at the next available inner tower position.
+    /// Places a default tower as a child of the first inner tower position that has no children.
     /// </summary>
     public void instantiateBaseTower()
     {
-        if (innerTowerPositions == null || towerIndex >= innerTowerPositions.Length)
+        if (innerTowerPositions == null)
         {
-            Debug.LogWarning("gameManager: All tower positions are occupied.", this);
+            Debug.LogError("gameManager: innerTowerPositions is not initialized.", this);
             return;
         }
 
-        Transform slot = innerTowerPositions[towerIndex];
-        if (slot == null)
+        foreach (Transform slot in innerTowerPositions)
         {
-            Debug.LogError($"gameManager: innerTowerPositions[{towerIndex}] is null.", this);
+            if (slot == null || slot.childCount > 0) continue;
+
+            GameObject instantiatedTower = Instantiate(tower, slot.position, Quaternion.identity, slot);
+            instantiatedTower.GetComponent<towerScript>().setTowerType(0);
             return;
         }
 
-        GameObject instantiatedTower = Instantiate(tower, slot.position, Quaternion.identity);
-        instantiatedTower.GetComponent<towerScript>().setTowerType(0);
-        DontDestroyOnLoad(instantiatedTower);
-        towerIndex++;
+        Debug.LogWarning("gameManager: All tower positions are occupied.", this);
     }
 
     /// <summary>
-    /// Adds a specific tower type at its predefined world position.
+    /// Adds a specific tower type at the first available inner tower position, parented to that slot.
     /// </summary>
     public void addTower(string towerType)
     {
-        Vector3 towerPos;
-        towerBaseClass.TowerType type;
-
-        switch (towerType)
+        if (innerTowerPositions == null)
         {
-            case "ROCKTHROWER":
-                type = towerBaseClass.TowerType.ROCKTHROWER;
-                towerPos = new Vector3(2, 2, 0);
-                break;
-            case "SLINGSHOT":
-                type = towerBaseClass.TowerType.SLINGSHOT;
-                towerPos = new Vector3(-2, 2, 0);
-                break;
-            case "SPEARTHROWER":
-                type = towerBaseClass.TowerType.SPEARTHROWER;
-                towerPos = new Vector3(-2, -2, 0);
-                break;
-            case "ARCHER":
-                type = towerBaseClass.TowerType.ARCHER;
-                towerPos = new Vector3(2, -2, 0);
-                break;
-            default:
-                type = towerBaseClass.TowerType.ROCKTHROWER;
-                towerPos = new Vector3(2, 2, 0);
-                break;
+            Debug.LogError("gameManager: innerTowerPositions is not initialized.", this);
+            return;
         }
 
-        GameObject addedTower = Instantiate(tower, towerPos, Quaternion.identity);
-        addedTower.transform.localScale = new Vector3(3, 3, 1);
-        addedTower.GetComponent<towerScript>().setTowerType(type);
-        addedTower.GetComponent<towerScript>().setAsParentObject(innerTowerPositions[towerIndex]);
-        DontDestroyOnLoad(addedTower);
+        towerBaseClass.TowerType type = towerType switch
+        {
+            "ROCKTHROWER"  => towerBaseClass.TowerType.ROCKTHROWER,
+            "SLINGSHOT"    => towerBaseClass.TowerType.SLINGSHOT,
+            "SPEARTHROWER" => towerBaseClass.TowerType.SPEARTHROWER,
+            "ARCHER"       => towerBaseClass.TowerType.ARCHER,
+            _              => towerBaseClass.TowerType.ROCKTHROWER,
+        };
+
+        foreach (Transform slot in innerTowerPositions)
+        {
+            if (slot == null || slot.childCount > 0) continue;
+
+            GameObject addedTower = Instantiate(tower, slot.position, Quaternion.identity, slot);
+            addedTower.transform.localScale = new Vector3(3, 3, 1);
+            towerScript script = addedTower.GetComponent<towerScript>();
+            script.setTowerType(type);
+            script.setAsParentObject(slot);
+            return;
+        }
+
+        Debug.LogWarning("gameManager: All tower positions are occupied.", this);
     }
 
     void timeScaleSwitch()

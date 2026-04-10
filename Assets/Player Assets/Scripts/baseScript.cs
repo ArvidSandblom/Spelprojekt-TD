@@ -47,7 +47,7 @@ public class baseScript : MonoBehaviour
         if (playerStatsComponent != null && playerStatsComponent.health <= 0)
         {
             alive = false;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f, 1f);
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 0f, 0f, 1f);
         }
     }
 
