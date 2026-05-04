@@ -20,12 +20,12 @@ public class towerScript : towerClass
     public int fireRateIndex;
     public int critChanceIndex;
     public int critDamageIndex;
-    Image healthBar;
+    //Image healthBar;
 
     
     public Sprite[] currentAnimation;
     SpriteRenderer spriteRenderer;
-    GameObject childSprite;
+    [SerializeField] GameObject childSprite;
     int frameIndex = 0;
     public float animationSpeed; // Time between frames in seconds
     private Transform target;
@@ -47,7 +47,7 @@ public class towerScript : towerClass
         damage = this.damage * playerStats.GetComponent<playerStats>().damageUpgradeMultiplier;
         fireRate = this.fireRate * playerStats.GetComponent<playerStats>().fireRateUpgradeMultiplier;
         statsInitialized = true;
-        healthBar = childSprite.transform.Find("towerHealth").GetComponent<Image>();
+        //healthBar = childSprite.GetComponent<Image>();
         if (currentAnimation != null && currentAnimation.Length > 0)
         {
             animationSpeed = fireRate / currentAnimation.Length;
@@ -72,10 +72,10 @@ public class towerScript : towerClass
         {
             spriteRenderer.flipX = target.position.x < transform.position.x;
         }
-        if (healthBar != null)
-        {
-            healthBar.fillAmount = health / 100f;
-        }
+        //if (healthBar != null)
+        //{
+        //    healthBar.fillAmount = health / 100f;
+        //}
     }
 
 
@@ -275,6 +275,7 @@ public class towerScript : towerClass
         {
             Destroy(gameObject);
         }
+
     }
 
     private void upgradeTowerStats()

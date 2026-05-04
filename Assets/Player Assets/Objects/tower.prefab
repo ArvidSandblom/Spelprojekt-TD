@@ -31,7 +31,6 @@ RectTransform:
   m_LocalScale: {x: 0.01706, y: 0.01706, z: 0.01706}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6321924258552404233}
   - {fileID: 3431296169829280837}
   - {fileID: 637367542001317318}
   m_Father: {fileID: 3248192145918831736}
@@ -131,15 +130,15 @@ RectTransform:
   m_GameObject: {fileID: 2090378692646740506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.875, y: 1, z: 1}
+  m_LocalScale: {x: 0.5263672, y: 0.55, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1780746485790629054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.800002, y: -31.7}
-  m_SizeDelta: {x: 60, y: 7}
+  m_AnchoredPosition: {x: 0.43, y: -45.06}
+  m_SizeDelta: {x: 60.9, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4682707201236265620
 CanvasRenderer:
@@ -206,15 +205,15 @@ RectTransform:
   m_GameObject: {fileID: 3086302479518952772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.875, y: 1, z: 1}
+  m_LocalScale: {x: 0.5263672, y: 0.55, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1780746485790629054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.800002, y: -31.7}
-  m_SizeDelta: {x: 60, y: 7}
+  m_AnchoredPosition: {x: 0.43, y: -45.06}
+  m_SizeDelta: {x: 60.9, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &252097343530574932
 CanvasRenderer:
@@ -237,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.036265016, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.10506415, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -342,81 +341,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &6354386614854019464
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6321924258552404233}
-  - component: {fileID: 2160196179513615972}
-  - component: {fileID: 7874519021889412452}
-  m_Layer: 0
-  m_Name: backgroundBlack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &6321924258552404233
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6354386614854019464}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.875, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1780746485790629054}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.8, y: -31.7}
-  m_SizeDelta: {x: 61, y: 8}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2160196179513615972
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6354386614854019464}
-  m_CullTransparentMesh: 1
---- !u!114 &7874519021889412452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6354386614854019464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Type: 3
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8418844215278460872
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +394,7 @@ MonoBehaviour:
   findStrongest: 0
   critChance: 0
   critDamage: 0
+  health: 0
   thisTowerType: 0
   projectilePrefab: {fileID: 7326364588709399095, guid: ce76e4b46b4b3a74a8eb522c9313412f, type: 3}
   projectileRock:
@@ -533,6 +458,7 @@ MonoBehaviour:
   critChanceIndex: 0
   critDamageIndex: 0
   currentAnimation: []
+  childSprite: {fileID: 3086302479518952772}
   animationSpeed: 0.1
   upgradeScreenPrefab: {fileID: 8507067598675859355, guid: 7d912caaa57c11d42adfe5b6f56a44ac, type: 3}
 --- !u!61 &4671780778705856358
@@ -608,7 +534,7 @@ Transform:
   m_GameObject: {fileID: 8605963109167141001}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.4325, z: 0}
+  m_LocalPosition: {x: 0, y: -0.4325, z: 0}
   m_LocalScale: {x: 0.992747, y: 0.902555, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -658,7 +584,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -5
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1309621086841712586, guid: 11be2c01792f9854895c0ef28a469d7f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -681,7 +607,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73bcf8b7c90f2c40a204938bc6c504b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 0}
-  platformSprites:
-  - {fileID: -7891793613738847529, guid: 653d1e324f61ff849b73d8b4802684a8, type: 3}
-  - {fileID: 2692938615380330224, guid: 653d1e324f61ff849b73d8b4802684a8, type: 3}
+  damage: 0
+  fireRate: 0
+  findClosest: 0
+  findStrongest: 0
+  critChance: 0
+  critDamage: 0
+  health: 0
+  playerStats: {fileID: 8418844215278460872}
+  platformSpritesAnim:
+  - {fileID: -1309621086841712586, guid: 11be2c01792f9854895c0ef28a469d7f, type: 3}
+  - {fileID: 6307607719527751720, guid: 11be2c01792f9854895c0ef28a469d7f, type: 3}
+  - {fileID: 7060158806808822190, guid: 11be2c01792f9854895c0ef28a469d7f, type: 3}
+  - {fileID: -4424228853823916114, guid: 11be2c01792f9854895c0ef28a469d7f, type: 3}
+  parentStats: {fileID: 8418844215278460872}
