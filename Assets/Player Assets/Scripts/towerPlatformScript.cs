@@ -1,13 +1,13 @@
-using UnityEditor.Searcher;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class towerPlatformScript : towerClass
 {
     [SerializeField] GameObject playerStats;
     [SerializeField] Sprite[] platformSpritesAnim;
     [SerializeField] GameObject parentStats;
-    public Image healthBarIMG;
+    [SerializeField] Image healthBarIMG;
+
     SpriteRenderer spriteRenderer;
     int ageIndex;
     float currentHealth;
@@ -31,7 +31,7 @@ public class towerPlatformScript : towerClass
         // Normalize/clamp to 0..100 so percentage checks are explicit
         healthPercentage = Mathf.Clamp(currentHealth, 0f, 100f);
 
-        //healthBarIMG.fillAmount = healthPercentage / 100f;
+        healthBarIMG.fillAmount = healthPercentage / 100f;
 
         ageIndex = playerStats.GetComponent<playerStats>().currentAge;
 
@@ -51,7 +51,7 @@ public class towerPlatformScript : towerClass
         }
         else if (healthPercentage >= 50f)
         {
-            spriteRenderer.sprite = platformSpritesAnim[1]; // Set the sprite for 74-50% health§
+            spriteRenderer.sprite = platformSpritesAnim[1]; // Set the sprite for 74-50% healthï¿½
             //if (platformSpritesAnim.Length > 1) chosenSprite = platformSpritesAnim[1];
         }
         else if (healthPercentage >= 25f)

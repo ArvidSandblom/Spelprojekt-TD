@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class enemyAI : enemyTypes
 {
-    private Transform target;    
+    private Transform target;
+    private Transform playerTarget;
+    private Transform towerTarget;
     public EnemyType thisEnemyType;
 
     
@@ -34,7 +36,8 @@ public class enemyAI : enemyTypes
         playerStats = GameObject.Find("playerStats");
         if (GameObject.Find("Player") != null)
         {
-            target = GameObject.Find("Player").transform;
+            playerTarget = GameObject.Find("Player").transform;
+            target = playerTarget;
         }
         randomiseEnemyTypes();
         setEnemyStats(thisEnemyType);
@@ -44,17 +47,26 @@ public class enemyAI : enemyTypes
     // Update is called once per frame
     void Update()
     {
+        // If the current tower target was destroyed, fall back to the player
+        if (towerTarget == null && target != playerTarget)
+        {
+            towerTarget = null;
+            target = playerTarget;
+            MovementState = true;
+            ChangeAnimation(currentAnimation);
+        }
+
         if (target == null) return;
 
-        float distanceToPlayer = Vector2.Distance(transform.position, target.position);
+        float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
-        if (distanceToPlayer <= attackRange && MovementState)
+        if (distanceToTarget <= attackRange && MovementState)
         {
-            // Entered player attack range — stop and switch to attack animation
+            // Entered attack range — stop and switch to attack animation
             MovementState = false;
             ChangeAnimation(currentAttackAnimation);
         }
-        else if (distanceToPlayer > attackRange && !MovementState)
+        else if (distanceToTarget > attackRange && !MovementState && towerTarget == null)
         {
             // Left player attack range — resume walking
             MovementState = true;
@@ -139,7 +151,13 @@ public class enemyAI : enemyTypes
             projectileInstance.GetComponent<enemyProjectile>().ChangeAnimation(rockProjectileAnimation);
             projectileInstance.GetComponent<enemyProjectile>().damage = damage;
         }
-        else if(target != null)
+        else if (towerTarget != null)
+        {
+            towerScript tower = towerTarget.GetComponent<towerScript>();
+            if (tower != null)
+                tower.TakeDamage(damage);
+        }
+        else if (target != null)
         {
             playerStats.GetComponent<playerStats>().TakeDamage(damage);
         }
@@ -168,6 +186,8 @@ public class enemyAI : enemyTypes
     {
         if (collision.gameObject.tag == "Tower")
         {
+            towerTarget = collision.transform;
+            target = towerTarget;
             MovementState = false;
             ChangeAnimation(currentAttackAnimation);
         }
@@ -175,8 +195,10 @@ public class enemyAI : enemyTypes
     }
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Tower")
+        if (collision.gameObject.tag == "Tower" && collision.transform == towerTarget)
         {
+            towerTarget = null;
+            target = playerTarget;
             MovementState = true;
             ChangeAnimation(currentAnimation);
         }

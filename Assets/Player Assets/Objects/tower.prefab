@@ -621,3 +621,4 @@ MonoBehaviour:
   - {fileID: 7060158806808822190, guid: 11be2c01792f9854895c0ef28a469d7f, type: 3}
   - {fileID: -4424228853823916114, guid: 11be2c01792f9854895c0ef28a469d7f, type: 3}
   parentStats: {fileID: 8418844215278460872}
+  healthBarIMG: {fileID: 753558365805530586}
