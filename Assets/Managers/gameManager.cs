@@ -8,11 +8,18 @@ public class gameManager : MonoBehaviour
 
     public GameObject tower;
 
+    public int enemiesDefeated = 0;
+
+    private const float TowerBuildCost = 100f;
+    private int towersBuilt = 0;
+
     [SerializeField] private GameObject[] innerTowerPositionPrefabs = new GameObject[4];
 
     private const int GameSceneBuildIndex = 1;
 
     private Transform[] innerTowerPositions;
+
+    private GameObject cheatPanel;
 
     void Awake()
     {
@@ -27,6 +34,18 @@ public class gameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+        cheatPanel = GameObject.Find("cheatPanel");
+            if (cheatPanel != null){
+                cheatPanel.SetActive(false);
+            }
+    }
+
+    public void toggleCheatPanel()
+    {
+        if (cheatPanel != null)
+        {
+            cheatPanel.SetActive(!cheatPanel.activeSelf);
+        }
     }
 
     void Start()
@@ -34,7 +53,16 @@ public class gameManager : MonoBehaviour
         SpawnInnerTowerPositions();
 
         if (SceneManager.GetActiveScene().buildIndex == GameSceneBuildIndex)
+        {
             WireAddTowerButton();
+            //WireCheatPanelButton();
+        }
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            timeScaleSwitch();
+        }        
     }
 
     private void OnEnable()
@@ -52,6 +80,7 @@ public class gameManager : MonoBehaviour
         if (scene.buildIndex != GameSceneBuildIndex) return;
 
         WireAddTowerButton();
+        //WireCheatPanelButton();
     }
 
     /// <summary>
@@ -75,6 +104,28 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    // private void WireCheatPanelButton()
+    // {
+    //     GameObject openBtn = GameObject.Find("openCheatPanel");
+    //     if (openBtn == null)
+    //     {
+    //         Debug.LogWarning("gameManager: Could not find 'openCheatPanel' in scene.", this);
+    //         return;
+    //     }
+
+    //     // FindFirstObjectByType with inactive search so the panel can start disabled in the scene
+    //     adminScripts admin = FindFirstObjectByType<adminScripts>(FindObjectsInactive.Include);
+    //     if (admin == null)
+    //     {
+    //         Debug.LogWarning("gameManager: Could not find adminScripts component.", this);
+    //         return;
+    //     }
+
+    //     Button openCheatPanelButton = openBtn.GetComponent<Button>();
+    //     openCheatPanelButton.onClick.RemoveAllListeners();
+    //     openCheatPanelButton.onClick.AddListener(admin.TogglePanel);
+    // }
+
     private void WireAddTowerButton()
     {
         GameObject addTowerObj = GameObject.Find("addTower");
@@ -87,12 +138,19 @@ public class gameManager : MonoBehaviour
         Button addTowerButton = addTowerObj.GetComponent<Button>();
         if (addTowerButton == null) return;
 
+        TMPro.TMP_Text towerButtonName = addTowerButton.GetComponentInChildren<TMPro.TMP_Text>();
+        if (towerButtonName != null){
+            towerButtonName.text = $"Build Tower\n{TowerBuildCost:F0}g";
+            Debug.Log("Not loading cost");
+            }
+
         addTowerButton.onClick.RemoveAllListeners();
         addTowerButton.onClick.AddListener(instantiateBaseTower);
     }
 
     /// <summary>
     /// Places a default tower as a child of the first inner tower position that has no children.
+    /// Costs <see cref="TowerBuildCost"/> gold; returns early if the player cannot afford it.
     /// </summary>
     public void instantiateBaseTower()
     {
@@ -102,10 +160,24 @@ public class gameManager : MonoBehaviour
             return;
         }
 
+        GameObject playerStatsObj = GameObject.Find("playerStats");
+        playerStats stats = playerStatsObj != null ? playerStatsObj.GetComponent<playerStats>() : null;
+
+        bool isFirstTower = towersBuilt == 0;
+        if (!isFirstTower && (stats == null || stats.gold < TowerBuildCost))
+        {
+            Debug.LogWarning("gameManager: Not enough gold to build a tower.", this);
+            return;
+        }
+
         foreach (Transform slot in innerTowerPositions)
         {
             if (slot == null || slot.childCount > 0) continue;
 
+            if (!isFirstTower)
+                stats.gold -= TowerBuildCost;
+
+            towersBuilt++;
             GameObject instantiatedTower = Instantiate(tower, slot.position, Quaternion.identity, slot);
             instantiatedTower.GetComponent<towerScript>().setTowerType(0);
             return;
@@ -151,8 +223,8 @@ public class gameManager : MonoBehaviour
 
     void timeScaleSwitch()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Time.timeScale = Time.timeScale == 1f ? 0f : 1f;
+        Time.timeScale = Time.timeScale == 1f ? 0f : 1f;
+        
     }
 
     public void openShop() { }

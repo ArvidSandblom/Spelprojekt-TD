@@ -86,6 +86,9 @@ public class enemyBaseClass : MonoBehaviour
         GameObject.Find("playerStats").GetComponent<playerStats>().agePoints += experienceValue;
         GameObject.Find("playerStats").GetComponent<playerStats>().gold += goldValue;
         enemySpawner.enemiesDestroyed++;
+        if(GameObject.Find("gameManager") != null){
+            GameObject.Find("gameManager").GetComponent<gameManager>().enemiesDefeated++;
+        }
         enemySpawner.UnregisterEnemy(gameObject);
         Destroy(gameObject);
     }    

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class restartManager : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class restartManager : MonoBehaviour
     void Start()
     {
         playerStats = GameObject.Find("playerStats");
+    }
+    public void loadGameScene()
+    {
+        SceneManager.LoadScene(1);
     }
     
 }

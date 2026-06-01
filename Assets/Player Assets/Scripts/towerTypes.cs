@@ -16,6 +16,7 @@ public class towerClass : towerBaseClass
                 health = 100f;
                 findClosest = true;
                 findStrongest = false;
+                UpgradeCost = 50f;
                 break;
             case TowerType.SLINGSHOT:
                 damage = 5f;
@@ -25,6 +26,7 @@ public class towerClass : towerBaseClass
                 health = 100f;
                 findClosest = false;
                 findStrongest = true;
+                UpgradeCost = 75f;
                 break;
             case TowerType.SPEARTHROWER:
                 damage = 20f;
@@ -34,6 +36,7 @@ public class towerClass : towerBaseClass
                 health = 100f;
                 findClosest = false;
                 findStrongest = true;
+                UpgradeCost = 100f;
                 break;
             case TowerType.ARCHER:
                 damage = 10f;
@@ -43,6 +46,7 @@ public class towerClass : towerBaseClass
                 health = 100f;
                 findClosest = true;
                 findStrongest = false;
+                UpgradeCost = 125f;
                 break;
         }        
     }

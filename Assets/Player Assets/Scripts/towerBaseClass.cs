@@ -57,6 +57,11 @@ public class towerBaseClass : MonoBehaviour
         get;
         set;
     }
+    public float UpgradeCost
+    {
+        get;
+        set;
+    }
 
 
 }
